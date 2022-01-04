@@ -1,0 +1,28 @@
+// Setup
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+@import "setup/typography.scss";
+
+// Basics
+@import "basics/helpers.scss";
+@import "basics/layout.scss";
+@import "basics/base.scss";
+@import "basics/buttons.scss";
+
+
+// Components
+@import "cmps/appHeader";
+@import "cmps/appFooter";
+@import "cmps/showTime";
+@import "cmps/countDown";
+@import "cmps/userPreview";
+@import "cmps/userList";
+@import "cmps/pokemonPreview";
+@import "cmps/loading";
+@import "cmps/userMsg";
+
+// Views (pages)
+@import "pages/mainApp";
+@import "pages/about";
+

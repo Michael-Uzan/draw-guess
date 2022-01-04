@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+html,
+input,
+select,
+textarea {
+    font-family: SourceSansPro-Black, sans-serif;
+    color: $fontColor;
+    font-weight: 600;
+}
+
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 rem(8px);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+::selection {
+    // color: $clr7;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+

@@ -1,0 +1,59 @@
+// flex helpers
+
+.flex {
+    display: flex;
+
+    > *.full {
+        flex: 1;
+    }
+
+    &.direction-col {
+        flex-direction: column;
+    }
+
+    &.direction-row {
+        flex-direction: row;
+    }
+
+    &.justify-center {
+        justify-content: center;
+    }
+
+    &.align-center {
+        align-items: center;
+    }
+
+    &.space-between {
+        justify-content: space-between;
+    }
+
+    &.space-around {
+        justify-content: space-around;
+    }
+
+    &.items-flex-start {
+        align-items: flex-start;
+    }
+
+    &.wrap {
+        flex-wrap: wrap;
+    }
+}
+
+.clean-list {
+    padding-inline-start: 0px;
+    margin: 0;
+    list-style-type: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.tac{
+    text-align: center;
+}
+
+
+
+

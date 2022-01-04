@@ -1,0 +1,12 @@
+.show-time{
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    &.dark{
+        background-color: black;
+        color: white;
+    }
+    img{
+        width: 200px;
+    }
+}
