@@ -1,0 +1,9 @@
+export default interface IGame {
+    _id: string,
+    img: string,
+    playerGuessId: string
+    playerDrawId: string
+    guessingWord: string
+    points: number
+    time: number
+}

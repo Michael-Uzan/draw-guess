@@ -3,9 +3,15 @@
     display: grid;
     place-content: center;
     .canvas-container {
+        margin-bottom: 35px;
         border: 2px solid black;
     }
     canvas {
+        width: 350px;
+        height: 175px;
+    }
+    img {
+        border: 2px solid black;
         width: 350px;
         height: 175px;
     }
