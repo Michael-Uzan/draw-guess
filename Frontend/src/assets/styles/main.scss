@@ -10,7 +10,6 @@
 @import "basics/base.scss";
 @import "basics/buttons.scss";
 
-
 // Components
 @import "cmps/appHeader";
 @import "cmps/appFooter";
@@ -23,6 +22,4 @@
 @import "cmps/userMsg";
 
 // Views (pages)
-@import "pages/mainApp";
-@import "pages/about";
-
+@import "pages/gameApp";

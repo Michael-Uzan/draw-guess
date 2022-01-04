@@ -1,5 +1,4 @@
-import { About } from "../pages/About";
-import { MainApp } from "../pages/MainApp";
+import { GameApp } from "../pages/GameApp";
 
 interface IRoutes {
     path: string,
@@ -8,12 +7,8 @@ interface IRoutes {
 
 const routes: IRoutes[] = [
     {
-        path: '/about',
-        component: About,
-    },
-    {
         path: '/',
-        component: MainApp,
+        component: GameApp,
     }
 ]
 

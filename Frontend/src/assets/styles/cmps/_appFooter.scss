@@ -1,4 +1,26 @@
-.footer{
-    background-color: $clr6;
-    height: 100px;
+.main-footer {
+    padding-bottom: 20px;
+    background-color: $clr1;
+    color: $bgcColor;
+    p {
+        font-size: rem(12px);
+    }
+    .footer-logo {
+        img {
+            max-width: 45px;
+            background-color: $bgcColor;
+            border-radius: 15px;
+        }
+    }
+    .footer-desc {
+        text-align: center;
+    }
+    .social-links {
+        margin-bottom: 35px;
+
+        img {
+            width: 35px;
+            filter: invert(1);
+        }
+    }
 }

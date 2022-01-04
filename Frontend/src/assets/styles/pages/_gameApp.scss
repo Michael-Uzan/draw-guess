@@ -1,0 +1,12 @@
+.game-app {
+    margin-bottom: 35px;
+    display: grid;
+    place-content: center;
+    .canvas-container {
+        border: 2px solid black;
+    }
+    canvas {
+        width: 350px;
+        height: 175px;
+    }
+}
