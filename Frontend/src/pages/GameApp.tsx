@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
+import IPosition from '../interface/IPosition.interface';
+import { utilService } from '../services/util.service';
 
 export const GameApp = () => {
-    const [drawing, setDrawing] = useState(null);
-    const [isDrawing, setIsDrawing] = useState(false);
-    const canvasRef = useRef(null)
-    const contextRef = useRef(null)
+    const [drawing, setDrawing] = useState<string | null>(null);
+    const [isDrawing, setIsDrawing] = useState<boolean>(false);
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const contextRef = useRef<CanvasRenderingContext2D>(null)
 
     useEffect(() => {
-        const canvas = canvasRef.current
-        canvas.width = '350'
-        canvas.height = '175'
+        const canvas = canvasRef.current as HTMLCanvasElement
+        canvas.width = 350
+        canvas.height = 175
 
         // canvas.width = elContainer.current.innerWidth * 2
         // canvas.height = elContainer.current.innerHeight * 2
@@ -18,7 +20,7 @@ export const GameApp = () => {
         // canvas.style.width = `${window.innerWidth}px`;
         // canvas.style.height = `${window.innerHeight}px`;
 
-        const context = canvas.getContext("2d")
+        const context = canvas.getContext("2d") as CanvasRenderingContext2D
         context.lineCap = "round";
         context.strokeStyle = "black";
         context.lineWidth = 1;
@@ -27,22 +29,22 @@ export const GameApp = () => {
         contextRef.current = context;
     }, [])
 
-    const startDrawing = ({ nativeEvent }) => {
-        const { startPosX, startPosY } = nativeEvent;
+    const startDrawing = (ev: MouseEvent | TouchEvent): void => {
+        const { x, y }: IPosition = utilService.getEvPos(ev)
         contextRef.current.beginPath();
-        contextRef.current.moveTo(startPosX, startPosY);
+        contextRef.current.moveTo(x, y);
         setIsDrawing(true);
     }
 
-    const finishDrawing = () => {
+    const finishDrawing = (): void => {
         contextRef.current.closePath();
         setIsDrawing(false);
     }
 
-    const draw = ({ nativeEvent }) => {
+    const draw = (ev: MouseEvent | TouchEvent): void => {
         if (!isDrawing) return;
-        const { offsetX, offsetY } = nativeEvent;
-        contextRef.current.lineTo(offsetX, offsetY);
+        const { x, y }: IPosition = utilService.getEvPos(ev)
+        contextRef.current.lineTo(x, y);
         contextRef.current.stroke();
         setDrawing(canvasRef.current.toDataURL('image/jpeg', 1.0));
     }

@@ -1,5 +1,3 @@
-'use strict'
-
 export const eventBusService = {
     on,
     emit,
@@ -27,7 +25,6 @@ function emit(eventName: string, data: any) {
 
 export function showUserMsg(txt: string, type: string = '') {
     eventBusService.emit('show-user-msg', { txt, type })
-    console.log('User MSG!!')
 }
 export function showSuccessMsg(txt: string) {
     showUserMsg(txt, 'success')
