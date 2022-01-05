@@ -15,7 +15,7 @@ export const WaitingChoose = ({ history }: any) => {
 
     return (
         <section className="waiting-choose">
-            {userService.IsDrawing(game, roundIdx, loggedinUser) ? <ChooseWord historyPush={historyPush} /> : <Waiting />}
+            {!userService.IsDrawing(game, roundIdx, loggedinUser) ? <ChooseWord historyPush={historyPush} /> : <Waiting />}
         </section>
     )
 }

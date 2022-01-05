@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { eventBusService } from '../services/event-bus.service';
 import { utilService } from '../services/util.service';
 import { wordService } from '../services/word.service'
 import { startNextRound } from '../store/actions/gameActions';
@@ -26,6 +27,10 @@ export const ChooseWord = ({ historyPush }: any) => {
     }, [])
 
     const onStartNextRound = async () => {
+        if (!word) {
+            eventBusService.showErrorMsg('Choose word!')
+            return
+        }
         await dispatch(startNextRound(game, roundIdx, level, word))
         historyPush(`/game/${game._id}/draw-guess`)
     }

@@ -48,7 +48,7 @@ async function startNextRound(game: IGame, roundIdx: number, level: string, gues
 function _getNewRound(game: IGame, roundIdx: number): IRound {
     return {
         guessingWord: 'cat',
-        img: '',
+        img: '../../assets/imgs/initCanvas.jpg',
         level: 1,
         time: 0,
         userDrawingId: game.rounds[roundIdx].userGuessingId, // Switch user positions
