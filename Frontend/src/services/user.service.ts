@@ -13,13 +13,13 @@ export const userService = {
     getEmptyUser
 }
 
-async function login(username: String): Promise<IUser> {
+async function login(userId: String): Promise<IUser> {
 
     // INITALIZE:
     // const users = userData
     // localStorageService.save(User_DB, users)
 
-    const user: IUser = await storageService.get(username, USER_DB)
+    const user: IUser = await storageService.get(userId, USER_DB)
     // const user: IUser = await httpService.post('auth/login', username)
     // if (!user) {
     //     throw new Error('login service error')

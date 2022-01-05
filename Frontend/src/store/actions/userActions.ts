@@ -1,11 +1,10 @@
-import { ICredentials } from "../../interface/ICredentials.js";
 import { eventBusService } from "../../services/event-bus.service";
 import { userService } from "../../services/user.service";
 
-export function onLogin(credentials: ICredentials) {
+export function onLogin(userId: string) {
     return async (dispatch: Function) => {
         try {
-            const user = await userService.login(credentials)
+            const user = await userService.login(userId)
             dispatch({
                 type: 'SET_USER',
                 user
@@ -21,21 +20,21 @@ export function onLogin(credentials: ICredentials) {
 }
 
 
-export function onSignup(credentials: ICredentials) {
-    return async (dispatch: Function) => {
-        try {
-            const user = await userService.signup(credentials)
-            dispatch({
-                type: 'SET_USER',
-                user
-            })
-            eventBusService.showSuccessMsg(`Welcome ${user.username}!`)
-        } catch (err) {
-            console.log('Cannot signup', err)
-            eventBusService.showErrorMsg('Sorry cannot Signup!')
-        }
-    }
-}
+// export function onSignup(credentials: ICredentials) {
+//     return async (dispatch: Function) => {
+//         try {
+//             const user = await userService.signup(credentials)
+//             dispatch({
+//                 type: 'SET_USER',
+//                 user
+//             })
+//             eventBusService.showSuccessMsg(`Welcome ${user.username}!`)
+//         } catch (err) {
+//             console.log('Cannot signup', err)
+//             eventBusService.showErrorMsg('Sorry cannot Signup!')
+//         }
+//     }
+// }
 
 export function onLogout() {
     return async (dispatch: Function) => {

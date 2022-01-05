@@ -10,18 +10,23 @@ import { localStorageService } from '../services/storageService';
 import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import { DrawGuess } from './DrawGuess';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadGame } from '../store/actions/gameActions'
 
 export const GameApp = ({ match }: any) => {
 
-    const [game, setGame] = useState(null);
+    const dispatch = useDispatch()
+    const { game } = useSelector(state => state.gameModule)
+    // const [game, setGame] = useState(null);
 
     useEffect(() => {
-        loadGame()
+        // loadGame()
 
         // LOGIN //
         userService.login('jrtez72dogg580g')
 
-
+        const { gameId } = match.params;
+        dispatch(loadGame(gameId))
         // const users = userData
         // localStorageService.save('userDB', users)
         return () => {
@@ -29,11 +34,11 @@ export const GameApp = ({ match }: any) => {
         }
     }, [])
 
-    const loadGame = async () => {
-        const { gameId } = match.params;
-        const game = await gameService.getGame(gameId)
-        setGame(game)
-    }
+    // const loadGame = async () => {
+
+    // const game = await gameService.getGame(gameId)
+    // setGame(game)
+    // }
 
     if (!game) return <Loading />
 

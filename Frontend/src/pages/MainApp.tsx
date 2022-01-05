@@ -18,7 +18,9 @@ export const MainApp = () => {
         setPokemons(pokemonsToShow)
         eventBusService.showSuccessMsg('Welcome')
     }
+
     if (!pokemons) return <Loading />
+
     return (
         <section className="main-app">
             <h1>Main App</h1>

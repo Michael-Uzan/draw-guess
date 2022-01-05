@@ -1,10 +1,14 @@
 header {
-    margin-bottom: 25px;
-    nav {
-        gap: 10px;
-        padding: 15px;
+    margin-bottom: 15px;
+    background-color: $clr1;
+    padding: 10px 10px;
+    .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
     }
-    a.active {
-        color: red;
+    .title {
+        height: 30px;
+        object-fit: contain;
     }
 }
