@@ -25,6 +25,18 @@ export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
   }
 }
 
+export function finishRound(game: IGame, roundIdx: number) {
+  return async (dispatch: Function) => {
+    try {
+      const finishedGame = await gameService.finishRound(game, roundIdx)
+      dispatch({ type: 'SET_GAME', game: finishedGame })
+    } catch (err) {
+      console.log('cannot finish game', err)
+    }
+  }
+
+}
+
 // export function setCurrRateImgs(rateProperties: IRateProperties) {
 //   return (dispatch: Function) => {
 //     dispatch({ type: 'SET_IMGS', rateProperties })

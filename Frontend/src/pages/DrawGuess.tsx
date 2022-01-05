@@ -7,7 +7,7 @@ import { gameService } from '../services/game.service';
 import { userService } from '../services/user.service'
 import { useDispatch, useSelector } from 'react-redux';
 
-export const DrawGuess = ({ match }: any) => {
+export const DrawGuess = ({ match, history }: any) => {
 
     // const dispatch = useDispatch()
     const { game, roundIdx } = useSelector(state => state.gameModule)
@@ -23,11 +23,15 @@ export const DrawGuess = ({ match }: any) => {
         return (game.rounds[roundIdx].userDrawingId === loggedinUser?._id)
     }
 
+    const historyPush = (route: string): void => {
+        history.push(route)
+    }
+
     if (!loggedinUser || !game) return <Loading />
 
     return (
         <section className="draw-guess">
-            {!getIsDrawing() ? <Draw /> : <Guess />}
+            {!getIsDrawing() ? <Draw /> : <Guess historyPush={historyPush} />}
         </section>
     )
 }
