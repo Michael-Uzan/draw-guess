@@ -9,7 +9,8 @@ import { localStorageService } from './storageService';
 export const gameService = {
     getGame,
     updateGame,
-    finishRound
+    finishRound,
+    startNextRound
 }
 
 const GAME_DB: string = 'gameDB';
@@ -37,6 +38,13 @@ async function finishRound(game: IGame, roundIdx: number) {
     return newGame
 }
 
+async function startNextRound(game: IGame, roundIdx: number, level: string, guessingWord: string) {
+    game.rounds[roundIdx].guessingWord = guessingWord
+    game.rounds[roundIdx].level = _getLevelPoints(level)
+    const newGame = await storageService.put(game, GAME_DB)
+    return newGame
+}
+
 function _getNewRound(game: IGame, roundIdx: number): IRound {
     return {
         guessingWord: 'cat',
@@ -54,6 +62,17 @@ function _updatePoints(game: IGame, roundIdx: number) {
     if (currGame.userGuessingId === game.user1._id) game.user1.points += points
     else game.user2.points += points
     return game
+}
+
+function _getLevelPoints(level: string): number {
+    switch (level) {
+        case 'medium':
+            return 3
+        case 'hard':
+            return 5
+        default:
+            return 1
+    }
 }
 
 

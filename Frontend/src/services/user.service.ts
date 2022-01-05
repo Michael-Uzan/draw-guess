@@ -1,3 +1,4 @@
+import IGame from '../interface/IGame.interfacets'
 import IUser from '../interface/IUser.interfacets'
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
@@ -10,7 +11,8 @@ export const userService = {
     logout,
     signup,
     getLoggedinUser,
-    getEmptyUser
+    getEmptyUser,
+    IsDrawing
 }
 
 async function login(userId: String): Promise<IUser> {
@@ -50,6 +52,9 @@ function getEmptyUser(): IUser {
         points: 0,
         img: '',
     }
+}
+function IsDrawing(game: IGame, roundIdx: number, loggedinUser: IUser): boolean {
+    return (game.rounds[roundIdx].userDrawingId === loggedinUser?._id)
 }
 
 function _saveLocalUser(user: IUser): IUser {

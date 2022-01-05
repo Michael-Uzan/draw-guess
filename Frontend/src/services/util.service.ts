@@ -2,7 +2,7 @@ import IPosition from "../interface/IPosition.interface"
 
 export const utilService = {
     makeId,
-    getEvPos
+    getCapitalDisplay
 }
 
 function makeId(length: number = 15): string {
@@ -14,22 +14,6 @@ function makeId(length: number = 15): string {
     return txt
 }
 
-function getEvPos(ev: MouseEvent | TouchEvent): IPosition {
-    const touchEvents = ['touchstart', 'touchmove', 'touchend'];
-    let pos: IPosition
-    if (touchEvents.includes(ev.type)) {
-        // ev.preventDefault()
-        const { pageX, pageY } = ev.changedTouches[0]
-        const { offsetLeft, offsetTop, clientLeft, clientTop } = ev.changedTouches[0].target
-        pos = {
-            x: pageX - offsetLeft - clientLeft,
-            y: pageY - offsetTop - clientTop
-        }
-    } else {
-        pos = {
-            x: ev.nativeEvent.offsetX,
-            y: ev.nativeEvent.offsetY
-        }
-    }
-    return pos
+function getCapitalDisplay(word: string): string {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
 }

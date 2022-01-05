@@ -8,6 +8,7 @@ export function loadGame(gameId: string) {
       dispatch({ type: 'SET_GAME', game })
     } catch (err) {
       console.log('canot load game ', err);
+      // EVENT BIS SERVICE
     }
   }
 }
@@ -34,7 +35,17 @@ export function finishRound(game: IGame, roundIdx: number) {
       console.log('cannot finish game', err)
     }
   }
+}
 
+export function startNextRound(game: IGame, roundIdx: number, level: string, guessingWord: string) {
+  return async (dispatch: Function) => {
+    try {
+      const updatedGame = await gameService.startNextRound(game, roundIdx, level, guessingWord)
+      dispatch({ type: 'SET_GAME', game: updatedGame })
+    } catch (err) {
+      console.log('cannot start next round ', err)
+    }
+  }
 }
 
 // export function setCurrRateImgs(rateProperties: IRateProperties) {

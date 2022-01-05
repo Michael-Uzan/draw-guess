@@ -17,15 +17,14 @@ export const Guess = ({ historyPush }: any) => {
         try {
             if (ev) ev.preventDefault();
             if (checkVictory()) {
+                eventBusService.showSuccessMsg('Correct! You earn ' + game.rounds[roundIdx].level + ' points!')
                 await dispatch(finishRound(game, roundIdx))
-                historyPush(`/game/${game._id}/waiting`)
+                historyPush(`/game/${game._id}/waiting-choose`)
             }
             else {
                 setGuess({ guessingWord: '' })
                 eventBusService.showErrorMsg('Worng guess!')
             }
-            // await dispatch(onLogin(credentials))
-            // history.push('/rates')
         } catch (err) {
             console.log('cannot guess', err)
         }

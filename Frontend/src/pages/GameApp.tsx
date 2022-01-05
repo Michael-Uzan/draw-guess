@@ -12,6 +12,8 @@ import { utilService } from '../services/util.service';
 import { DrawGuess } from './DrawGuess';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadGame } from '../store/actions/gameActions'
+import { WaitingChoose } from './WaitingChoose';
+import { onLogin } from '../store/actions/userActions';
 
 export const GameApp = ({ match }: any) => {
 
@@ -23,8 +25,8 @@ export const GameApp = ({ match }: any) => {
         // loadGame()
 
         // LOGIN //
-        userService.login('jrtez72dogg580g')
-
+        // userService.login('jrtez72dogg580g')
+        dispatch(onLogin('jrtez72dogg580g'))
         const { gameId } = match.params;
         dispatch(loadGame(gameId))
         // const users = userData
@@ -34,18 +36,13 @@ export const GameApp = ({ match }: any) => {
         }
     }, [])
 
-    // const loadGame = async () => {
-
-    // const game = await gameService.getGame(gameId)
-    // setGame(game)
-    // }
-
     if (!game) return <Loading />
 
     return (
         <section className="game-app">
             <GameSummary game={game} />
             <Route exact component={DrawGuess} path="/game/:gameId/draw-guess" />
+            <Route exact component={WaitingChoose} path="/game/:gameId/waiting-choose" />
         </section>
     )
 }

@@ -2,8 +2,11 @@ button {
     cursor: pointer;
     border: none;
     border-radius: 3px;
-&:hover{
-    background-color: #fff;
+    font-size: rem(17px);
+    padding: 10px;
+    color: white;
+    background-color: $clr3;
+    &:hover {
+        opacity: 0.8;
+    }
 }
-}
-
