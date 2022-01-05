@@ -29,6 +29,7 @@ async function updateGame(newGame: IGame): Promise<any> {
 }
 
 async function finishRound(game: IGame, roundIdx: number) {
+    game = _updatePoints(game, roundIdx)
     const newRound = _getNewRound(game, roundIdx)
     game.rounds.push(newRound)
     game.status = 'waiting'
@@ -45,6 +46,14 @@ function _getNewRound(game: IGame, roundIdx: number): IRound {
         userDrawingId: game.rounds[roundIdx].userGuessingId, // Switch user positions
         userGuessingId: game.rounds[roundIdx].userDrawingId // Switch user positions
     }
+}
+
+function _updatePoints(game: IGame, roundIdx: number) {
+    const currGame = game.rounds[roundIdx]
+    const points = currGame.level
+    if (currGame.userGuessingId === game.user1._id) game.user1.points += points
+    else game.user2.points += points
+    return game
 }
 
 
