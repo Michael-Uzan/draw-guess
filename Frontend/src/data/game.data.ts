@@ -3,6 +3,7 @@ import IGame from "../interface/IGame.interfacets";
 export const gameData: IGame[] = [
     {
         "_id": "adnhb32804rt09hj049238t6",
+        "status": "draw-guess",
         "user1": {
             "img": "https://thumbs.dreamstime.com/b/cartoon-purple-monster-character-design-123472437.jpg",
             "points": 8,

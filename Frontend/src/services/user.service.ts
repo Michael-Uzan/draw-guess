@@ -3,7 +3,7 @@ import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER: string = 'loggedinUser'
-const USER_DB: string = 'gameDB'
+const USER_DB: string = 'userDB'
 
 export const userService = {
     login,

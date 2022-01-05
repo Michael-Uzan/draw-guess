@@ -1,8 +1,10 @@
 .main-container {
     display: grid;
+    place-content: center;
     column-gap: 1rem;
 
     grid-template-columns: 0px 1fr 0px;
+    grid-template-columns: 0px minmax(auto, 450px) 0px;
 
     > * {
         grid-column: 2;
@@ -12,26 +14,24 @@
         grid-column: 1 / -1;
     }
 
-    @include for-narrow-layout {
-        grid-template-columns:
-            1fr
-            minmax(auto, $mobile-breakpoint)
-            1fr;
-    }
+    // @include for-narrow-layout {
+    //     grid-template-columns:
+    //         1fr
+    //         minmax(auto, $mobile-breakpoint)
+    //         1fr;
+    // }
 
-    @include for-normal-layout {
-        grid-template-columns:
-            1fr
-            minmax(auto, $narrow-breakpoint)
-            1fr;
-    }
+    // @include for-normal-layout {
+    //     grid-template-columns:
+    //         1fr
+    //         minmax(auto, $narrow-breakpoint)
+    //         1fr;
+    // }
 
-    @include for-wide-layout {
-        grid-template-columns:
-            1fr
-            minmax(auto, $normal-breakpoint)
-            1fr;
-    }
+    // @include for-wide-layout {
+    //     grid-template-columns:
+    //         1fr
+    //         minmax(auto, $normal-breakpoint)
+    //         1fr;
+    // }
 }
-
-

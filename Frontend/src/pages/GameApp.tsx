@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Route } from 'react-router-dom';
 import { Draw } from '../cmp/Draw';
 import { GameSummary } from '../cmp/GameSummary';
 import { Loading } from '../cmp/Loading';
@@ -8,6 +9,7 @@ import { gameService } from '../services/game.service';
 import { localStorageService } from '../services/storageService';
 import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
+import { DrawGuess } from './DrawGuess';
 
 export const GameApp = ({ match }: any) => {
 
@@ -15,6 +17,11 @@ export const GameApp = ({ match }: any) => {
 
     useEffect(() => {
         loadGame()
+
+        // LOGIN //
+        userService.login('jrtez72dogg580g')
+
+
         // const users = userData
         // localStorageService.save('userDB', users)
         return () => {
@@ -33,8 +40,7 @@ export const GameApp = ({ match }: any) => {
     return (
         <section className="game-app">
             <GameSummary game={game} />
-            <Draw />
-            {/* {drawing && <img src={drawing} />} */}
+            <Route exact component={DrawGuess} path="/game/:gameId/draw-guess" />
         </section>
     )
 }
