@@ -1,5 +1,6 @@
 'use strict'
 import axios from 'axios'
+import { gameData } from '../data/game.data';
 import { storageService } from './async-storage.service';
 import { localStorageService } from './storageService';
 
@@ -7,11 +8,14 @@ export const gameService = {
     getGame
 }
 
-// const POKEMON_QUANTITY: number = 3;
 const GAME_DB: string = 'gameDB';
 
-async function getGame(): Promise<any> { //Promise<IPokemon[]>
-    const game = await storageService.query(GAME_DB)
+async function getGame(gameId: string): Promise<any> {
+    // INITALIZE:
+    // const game = gameData
+    // localStorageService.save(GAME_DB, game)
+
+    const game = await storageService.get(gameId, GAME_DB)
     return game
 }
 

@@ -1,0 +1,18 @@
+.avatar {
+    margin-bottom: 15px;
+    .avatar-img {
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+    }
+    .points {
+        h4 {
+            margin: 0 5px;
+        }
+        .img-coin {
+            border: 0;
+            width: 15px;
+            height: 15px;
+        }
+    }
+}

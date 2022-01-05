@@ -1,6 +1,5 @@
 {
   "name": "draw-guess",
-  "homepage": "https://Michael-Uzan.github.io/pokemon",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

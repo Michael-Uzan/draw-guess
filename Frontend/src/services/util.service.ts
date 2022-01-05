@@ -5,10 +5,10 @@ export const utilService = {
     getEvPos
 }
 
-function makeId(length: number = 5): string {
-    var txt = ''
-    var possible = '0123456789'
-    for (var i = 0; i < length; i++) {
+function makeId(length: number = 15): string {
+    let txt = ''
+    const possible = '0123456789abcdefghijclmnoartxyz'
+    for (let i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return txt

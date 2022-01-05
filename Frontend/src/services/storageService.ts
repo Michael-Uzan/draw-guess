@@ -5,7 +5,7 @@ export const localStorageService = {
     load
 }
 
-function save(key: string, value: IPokemon[]) {
+function save(key: string, value: any[]) {
     localStorage[key] = JSON.stringify(value);
 }
 

@@ -7,7 +7,7 @@ interface IRoutes {
 
 const routes: IRoutes[] = [
     {
-        path: '/',
+        path: '/game/:gameId',
         component: GameApp,
     }
 ]
