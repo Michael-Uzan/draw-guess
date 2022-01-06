@@ -1,8 +1,10 @@
 import IPosition from "../interface/IPosition.interface"
+import { eventBusService } from "./event-bus.service"
 
 export const utilService = {
     makeId,
-    getCapitalDisplay
+    getCapitalDisplay,
+    copyToClipboard
 }
 
 function makeId(length: number = 15): string {
@@ -16,4 +18,9 @@ function makeId(length: number = 15): string {
 
 function getCapitalDisplay(word: string): string {
     return (word.charAt(0).toUpperCase() + word.slice(1));
+}
+
+function copyToClipboard(link: string): void {
+    navigator.clipboard.writeText(link);
+    eventBusService.showSuccessMsg('Link copied!')
 }

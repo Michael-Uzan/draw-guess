@@ -28,6 +28,11 @@ h6 {
     margin: 0 0 rem(8px);
 }
 
+h1 {
+    margin-bottom: 35px;
+    font-size: rem(25px);
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -45,4 +50,3 @@ input:focus-visible,
 textarea:focus-visible {
     outline: -webkit-focus-ring-color auto 0px;
 }
-

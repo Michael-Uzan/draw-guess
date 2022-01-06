@@ -10,6 +10,7 @@ export const userService = {
     login,
     logout,
     signup,
+    getUsers,
     getLoggedinUser,
     getEmptyUser,
     IsDrawing
@@ -40,6 +41,11 @@ async function signup(newUser: IUser): Promise<IUser> {
 async function logout(): Promise<void> {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     return await httpService.post('auth/logout', null)
+}
+
+async function getUsers() {
+    const users: IUser[] = await storageService.query(USER_DB)
+    return users
 }
 
 function getLoggedinUser(): IUser | null {
