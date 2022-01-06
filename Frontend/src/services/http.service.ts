@@ -10,7 +10,7 @@ var axios = Axios.create({
 })
 
 export const httpService = {
-    get(endpoint: string, data: any) {
+    get(endpoint: string, data: any = null) {
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint: string, data: any) {

@@ -12,7 +12,7 @@ const session = expressSession({
     cookie: { secure: false }
 })
 
-app.use(express.json({limit : '50mb'}));
+app.use(express.json({ limit: '50mb' }));
 app.use(express.static('public'))
 app.use(session)
 
@@ -29,15 +29,17 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-const authRoutes = require('./api/auth/auth.routes')
-const userRoutes = require('./api/user/user.routes')
-const boardRoutes = require('./api/board/board.routes')
+const wordRoutes = require('./api/word/word.routes')
+// const authRoutes = require('./api/auth/auth.routes')
+// const userRoutes = require('./api/user/user.routes')
+// const boardRoutes = require('./api/board/board.routes')
 const { connectSockets } = require('./services/socket.service')
 
 
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
-app.use('/api/boards', boardRoutes)
+app.use('/api/word', wordRoutes)
+// app.use('/api/auth', authRoutes)
+// app.use('/api/user', userRoutes)
+// app.use('/api/boards', boardRoutes)
 connectSockets(http, session)
 
 // const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
