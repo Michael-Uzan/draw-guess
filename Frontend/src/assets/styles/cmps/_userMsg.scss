@@ -12,7 +12,8 @@
     }
     button {
         // float: right;
-        border: 0;
+        background-color: $bgcColor;
+        border: 2px solid black;
         border-radius: 50%;
         margin: 10px;
         color: $fontColor;
@@ -21,10 +22,10 @@
         }
     }
 
-        &.success {
-            border: 8px solid rgb(41, 189, 73);
-        }
-        &.danger {
-            border: 8px solid rgb(216, 59, 59);
-        }
+    &.success {
+        border: 8px solid rgb(41, 189, 73);
+    }
+    &.danger {
+        border: 8px solid rgb(216, 59, 59);
+    }
 }

@@ -1,4 +1,5 @@
 import { GameApp } from "../pages/GameApp";
+import { HomePage } from "../pages/HomePage";
 import { StartNewGame } from "../pages/StartNewGame";
 
 interface IRoutes {
@@ -14,6 +15,10 @@ const routes: IRoutes[] = [
     {
         path: '/game',
         component: StartNewGame,
+    },
+    {
+        path: '/',
+        component: HomePage,
     }
 ]
 

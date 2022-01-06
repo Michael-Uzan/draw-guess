@@ -27,6 +27,17 @@ export function createNewGame(user: IUser, historyPush: Function) {
   }
 }
 
+export function addUserToGame(game: IGame, user: IUser) {
+  return async (dispatch: Function) => {
+    try {
+      const updatedGame = await gameService.addUserToGame(game, user)
+      dispatch({ type: 'SET_GAME', game: updatedGame })
+    } catch (err) {
+      console.log('cannot add user to game', err)
+    }
+  }
+}
+
 export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
   return async (dispatch: Function) => {
     try {

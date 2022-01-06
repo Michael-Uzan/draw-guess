@@ -11,6 +11,7 @@ import { utilService } from './util.service';
 export const gameService = {
     getGame,
     createNewGame,
+    addUserToGame,
     updateGame,
     finishRound,
     startNextRound
@@ -45,6 +46,14 @@ async function createNewGame(user: IUser) {
         ]
     }
     const res = await storageService.post(newGame, GAME_DB)
+    return res
+}
+
+async function addUserToGame(game: IGame, user: IUser) {
+    game.user2 = user
+    game.status = 'waiting-choose'
+    game.rounds[0].userGuessingId = user._id
+    const res = await storageService.post(game, GAME_DB)
     return res
 }
 

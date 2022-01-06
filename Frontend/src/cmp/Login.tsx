@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import IUser from '../interface/IUser.interfacets';
 import { eventBusService } from '../services/event-bus.service';
 import { userService } from '../services/user.service'
-import { createNewGame } from '../store/actions/gameActions';
+import { addUserToGame, createNewGame } from '../store/actions/gameActions';
 import { onLogin } from '../store/actions/userActions';
 import { Loading } from './Loading';
 import { UserList } from './UserList';
@@ -29,8 +29,8 @@ export const Login = ({ historyPush }: any) => {
             await dispatch(onLogin(selectedUser._id))
             if (!game) {
                 await dispatch(createNewGame(selectedUser, historyPush))
-                // historyPush(`/game/${game._id}/invite-login`)
             } else {
+                await dispatch(addUserToGame(game, selectedUser))
                 historyPush(`/game/${game._id}/waiting-choose`)
             }
             eventBusService.showSuccessMsg('Let\'s start!')
