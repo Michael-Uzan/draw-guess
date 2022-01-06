@@ -1,4 +1,5 @@
 import IGame from "../../interface/IGame.interfacets";
+import IUser from "../../interface/IUser.interfacets";
 import { gameService } from "../../services/game.service";
 
 export function loadGame(gameId: string) {
@@ -9,6 +10,19 @@ export function loadGame(gameId: string) {
     } catch (err) {
       console.log('canot load game ', err);
       // EVENT BIS SERVICE
+    }
+  }
+}
+
+export function createNewGame(user: IUser, historyPush: Function) {
+  return async (dispatch: Function) => {
+    try {
+      const game = await gameService.createNewGame(user)
+      dispatch({ type: 'SET_GAME', game })
+      historyPush(`/game/${game._id}/invite-login`)
+      return game
+    } catch (err) {
+      console.log('cannot start a new game', err)
     }
   }
 }
@@ -47,6 +61,8 @@ export function startNextRound(game: IGame, roundIdx: number, level: string, gue
     }
   }
 }
+
+
 
 // export function setCurrRateImgs(rateProperties: IRateProperties) {
 //   return (dispatch: Function) => {

@@ -1,3 +1,7 @@
+////////////////////////////////////////////////
+//         USED JUST FOR DEVELOPMENT          //
+////////////////////////////////////////////////
+
 export const wordData = {
     easy: ['dog', 'cat', 'cube'],
     medium: ['death', 'flute', 'laptop'],

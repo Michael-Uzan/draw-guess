@@ -1,7 +1,9 @@
+import { userData } from '../data/user.data'
 import IGame from '../interface/IGame.interfacets'
 import IUser from '../interface/IUser.interfacets'
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
+import { localStorageService } from './storageService'
 
 const STORAGE_KEY_LOGGEDIN_USER: string = 'loggedinUser'
 const USER_DB: string = 'userDB'
@@ -60,6 +62,9 @@ function getEmptyUser(): IUser {
     }
 }
 function IsDrawing(game: IGame, roundIdx: number, loggedinUser: IUser): boolean {
+    console.log('game', game)
+    console.log('round', roundIdx)
+    console.log('loggediUser', loggedinUser)
     return (game.rounds[roundIdx].userDrawingId === loggedinUser?._id)
 }
 

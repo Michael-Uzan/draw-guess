@@ -1,3 +1,7 @@
+////////////////////////////////////////////////
+//         USED JUST FOR DEVELOPMENT          //
+////////////////////////////////////////////////
+
 import IGame from "../interface/IGame.interfacets";
 
 export const gameData: IGame[] = [

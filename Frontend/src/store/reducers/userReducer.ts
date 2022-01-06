@@ -1,14 +1,14 @@
 import IUser from "../../interface/IUser.interfacets";
 
 const initialState: UserState = {
-  loggedInUser: null
+  loggedinUser: null
 }
 
 export function userReducer(state: UserState = initialState, action: UserAction) {
   var newState = state;
   switch (action.type) {
     case 'SET_USER':
-      newState = { ...state, loggedInUser: action.user }
+      newState = { ...state, loggedinUser: action.user }
       break;
     default:
   }
@@ -21,5 +21,5 @@ interface UserAction {
 }
 
 interface UserState {
-  loggedInUser: IUser | null,
+  loggedinUser: IUser | null,
 }

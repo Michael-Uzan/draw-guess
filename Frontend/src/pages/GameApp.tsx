@@ -37,6 +37,8 @@ export const GameApp = ({ match }: any) => {
         }
     }, [])
 
+    // HISTORY PUSH HERE // 
+
     if (!game) return <Loading />
 
     return (
