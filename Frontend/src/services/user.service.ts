@@ -57,6 +57,7 @@ function getLoggedinUser(): IUser | null {
 function getEmptyUser(): IUser {
     return {
         username: '',
+        isPlaying: false,
         points: 0,
         img: '',
     }

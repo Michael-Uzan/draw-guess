@@ -5,6 +5,7 @@ import IGame from '../interface/IGame.interfacets';
 import IRound from '../interface/IRound.interface';
 import IUser from '../interface/IUser.interfacets';
 import { storageService } from './async-storage.service';
+import { httpService } from './http.service';
 import { localStorageService } from './storageService';
 import { utilService } from './util.service';
 
@@ -20,6 +21,8 @@ export const gameService = {
 const GAME_DB: string = 'gameDB';
 
 async function getGame(gameId: string): Promise<any> {
+    return httpService.get(`game/${gameId}`)
+
     // INITALIZE:
     // const game = gameData
     // localStorageService.save(GAME_DB, game)
