@@ -20,6 +20,6 @@ interface UserAction {
   type: string
 }
 
-interface UserState {
+export interface UserState {
   loggedinUser: IUser | null,
 }

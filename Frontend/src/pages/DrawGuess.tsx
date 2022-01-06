@@ -6,11 +6,15 @@ import IUser from '../interface/IUser.interfacets';
 import { gameService } from '../services/game.service';
 import { userService } from '../services/user.service'
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { GameState } from '../store/reducers/gameReducer';
+import { UserState } from '../store/reducers/userReducer';
+import IGame from '../interface/IGame.interfacets';
 
 export const DrawGuess = ({ match, history }: any) => {
 
-    const { game, roundIdx } = useSelector(state => state.gameModule)
-    const { loggedinUser } = useSelector(state => state.userModule)
+    const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
+    const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)
 
     const historyPush = (route: string): void => {
         history.push(route)
@@ -18,7 +22,7 @@ export const DrawGuess = ({ match, history }: any) => {
 
     return (
         <section className="draw-guess">
-            {userService.IsDrawing(game, roundIdx, loggedinUser) ? <Draw /> : <Guess historyPush={historyPush} />}
+            {userService.IsDrawing(game as IGame, roundIdx, loggedinUser as IUser) ? <Draw /> : <Guess historyPush={historyPush} />}
         </section>
     )
 }

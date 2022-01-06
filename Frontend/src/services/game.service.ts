@@ -52,7 +52,7 @@ async function createNewGame(user: IUser) {
 async function addUserToGame(game: IGame, user: IUser) {
     game.user2 = user
     game.status = 'waiting-choose'
-    game.rounds[0].userGuessingId = user._id
+    game.rounds[0].userGuessingId = user._id as string
     const res = await storageService.post(game, GAME_DB)
     return res
 }
@@ -90,10 +90,10 @@ function _getNewRound(game: IGame, roundIdx: number): IRound {
 }
 
 function _updatePoints(game: IGame, roundIdx: number) {
-    const currGame = game.rounds[roundIdx]
-    const points = currGame.level
-    if (currGame.userGuessingId === game.user1._id) game.user1.points += points
-    else game.user2.points += points
+    const currGame: IRound = game.rounds[roundIdx]
+    const points: number = currGame.level
+    if (currGame.userGuessingId === game.user1?._id) game.user1.points += points
+    else game.user2 ? (game.user2.points += points) : (game.user2 = game.user2) // Typescript Error :(
     return game
 }
 

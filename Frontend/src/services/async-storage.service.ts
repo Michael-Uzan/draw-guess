@@ -2,7 +2,6 @@
 //  mimic the server side with a delay to create async methoeds //
 //////////////////////////////////////////////////////////////////
 
-import IPokemon from "../interface/IPokemon.interface"
 import { utilService } from "./util.service"
 
 export const storageService = {
@@ -56,7 +55,7 @@ async function remove(entityId: String, entityType: string): Promise<boolean> {
 }
 
 
-function _save(entities: IPokemon[], entityType: string): void {
+function _save(entities: any, entityType: string): void {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 

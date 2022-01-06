@@ -1,13 +1,13 @@
 import React from 'react'
 
 interface PropType {
-    word: string
+    word: string | null | undefined
 }
 
 export const WordToLines = ({ word }: PropType) => {
 
     const getLines = () => {
-        return word.split('').map((letter: string) => '_ ').join('')
+        return word ? word.split('').map((letter: string) => '_ ').join('') : ''
     }
 
     return (

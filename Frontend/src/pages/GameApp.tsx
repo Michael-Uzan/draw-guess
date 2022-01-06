@@ -15,11 +15,13 @@ import { loadGame } from '../store/actions/gameActions'
 import { WaitingChoose } from './WaitingChoose';
 import { onLogin } from '../store/actions/userActions';
 import { InviteLogin } from './InviteLogin';
+import { RootState } from '../store';
+import { GameState } from '../store/reducers/gameReducer';
 
 export const GameApp = ({ match }: any) => {
 
     const dispatch = useDispatch()
-    const { game } = useSelector(state => state.gameModule)
+    const { game }: GameState = useSelector((state: RootState) => state.gameModule)
     // const [game, setGame] = useState(null);
 
     useEffect(() => {

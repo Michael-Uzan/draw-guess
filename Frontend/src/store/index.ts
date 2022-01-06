@@ -14,8 +14,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 // Combining reducers into one
 const rootReducer = combineReducers({
+  userModule: userReducer,
   gameModule: gameReducer,
-  userModule: userReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

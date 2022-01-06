@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { IndexType } from 'typescript';
 import { eventBusService } from '../services/event-bus.service';
 import { utilService } from '../services/util.service';
 import { wordService } from '../services/word.service'
+import { RootState } from '../store';
 import { startNextRound } from '../store/actions/gameActions';
+import { GameState } from '../store/reducers/gameReducer';
 import { Loading } from './Loading';
 import { SelectList } from './SelectList';
 
 export const ChooseWord = ({ historyPush }: any) => {
     const dispatch = useDispatch()
-    const { game, roundIdx } = useSelector(state => state.gameModule)
+    const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
 
     const [level, setLevel] = useState<string>('easy');
     const [words, setWords] = useState<string[] | null>(null);
@@ -17,7 +20,7 @@ export const ChooseWord = ({ historyPush }: any) => {
     const [levels, setLevels] = useState<string[] | null>(null);
 
     useEffect(() => {
-        const wordsToShow: string[] = wordService.getWords(level)
+        const wordsToShow: string[] = wordService.getWords(level as any)
         setWords(wordsToShow)
     }, [level])
 
@@ -27,6 +30,7 @@ export const ChooseWord = ({ historyPush }: any) => {
     }, [])
 
     const onStartNextRound = async () => {
+        if (!game) return
         if (!word) {
             eventBusService.showErrorMsg('Choose word!')
             return

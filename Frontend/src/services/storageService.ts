@@ -1,5 +1,3 @@
-import IPokemon from "../interface/IPokemon.interface";
-
 export const localStorageService = {
     save,
     load

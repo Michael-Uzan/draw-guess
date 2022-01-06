@@ -1,3 +1,4 @@
+import { IndexType } from "typescript"
 import { wordData } from "../data/word.data"
 
 export const wordService = {

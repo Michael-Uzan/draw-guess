@@ -34,8 +34,8 @@ function finishDrawing(context: CanvasRenderingContext2D): void {
     context.closePath();
 }
 
-function _getEvPos(ev: MouseEvent | TouchEvent): IPosition {
-    const touchEvents = ['touchstart', 'touchmove', 'touchend'];
+function _getEvPos(ev: MouseEvent | TouchEvent | any): IPosition {
+    const touchEvents: string[] = ['touchstart', 'touchmove', 'touchend'];
     let pos: IPosition
     if (touchEvents.includes(ev.type)) {
         // ev.preventDefault()
