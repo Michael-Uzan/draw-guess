@@ -2,6 +2,8 @@ const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
 
+const COLLECTION_USER = 'user'
+
 module.exports = {
     query,
     getById,
@@ -13,7 +15,7 @@ module.exports = {
 
 async function query(filterBy = {}) {
     try {
-        const collection = await dbService.getCollection('user')
+        const collection = await dbService.getCollection(COLLECTION_USER)
         var users = await collection.find().toArray()
         users = users.map(user => {
             delete user.password
@@ -29,9 +31,9 @@ async function query(filterBy = {}) {
 
 async function getById(userId) {
     try {
-        const collection = await dbService.getCollection('user')
+        const collection = await dbService.getCollection(COLLECTION_USER)
         const user = await collection.findOne({ '_id': ObjectId(userId) })
-        delete user.password
+        // delete user.password
         return user
     } catch (err) {
         logger.error(`while finding user ${userId}`, err)
@@ -41,7 +43,7 @@ async function getById(userId) {
 
 async function getByUsername(username) {
     try {
-        const collection = await dbService.getCollection('user')
+        const collection = await dbService.getCollection(COLLECTION_USER)
         const user = await collection.findOne({ username })
         return user
     } catch (err) {
@@ -52,7 +54,7 @@ async function getByUsername(username) {
 
 async function remove(userId) {
     try {
-        const collection = await dbService.getCollection('user')
+        const collection = await dbService.getCollection(COLLECTION_USER)
         await collection.deleteOne({ '_id': ObjectId(userId) })
     } catch (err) {
         logger.error(`cannot remove user ${userId}`, err)
@@ -69,7 +71,7 @@ async function update(user) {
             fullname: user.fullname,
             initial: user.initial
         }
-        const collection = await dbService.getCollection('user')
+        const collection = await dbService.getCollection(COLLECTION_USER)
         await collection.updateOne({ '_id': userToSave._id }, { $set: userToSave })
         return userToSave;
     } catch (err) {
@@ -87,7 +89,7 @@ async function add(user) {
             fullname: user.fullname,
             initials: user.initials
         }
-        const collection = await dbService.getCollection('user')
+        const collection = await dbService.getCollection(COLLECTION_USER)
         await collection.insertOne(userToAdd)
         return userToAdd
     } catch (err) {

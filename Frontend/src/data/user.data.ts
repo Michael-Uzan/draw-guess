@@ -40,5 +40,26 @@ export const userData: IUser[] = [
         "img": "https://cdn.vectorstock.com/i/thumb-large/58/03/cyclops-monster-vector-16555803.webp",
         "points": 9,
     },
+    {
+        "_id": "yg9jmu09fdffcewf",
+        "isPlaying": false,
+        "username": "Sajanka",
+        "img": "https://cdn2.vectorstock.com/i/thumb-large/45/51/toothy-monster-vector-2814551.jpg",
+        "points": 2,
+    },
+    {
+        "_id": "438590t3u40c",
+        "isPlaying": false,
+        "username": "Blastoyz",
+        "img": "https://cdn.vectorstock.com/i/thumb-large/76/86/happy-young-cartoon-turtle-runs-and-tries-to-scare-vector-31107686.webp",
+        "points": 15,
+    },
+    {
+        "_id": "34580346y9rfhy7gf",
+        "isPlaying": false,
+        "username": "Jilax",
+        "img": "https://cdn5.vectorstock.com/i/thumb-large/69/39/laughing-monster-vector-956939.jpg",
+        "points": 10,
+    },
 ]
 

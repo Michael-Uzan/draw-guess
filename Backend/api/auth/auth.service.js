@@ -3,13 +3,13 @@ const userService = require('../user/user.service')
 const logger = require('../../services/logger.service')
 
 
-async function login(username, password) {
-    logger.debug(`auth.service - login with username: ${username}`)
+async function login(userId) {
+    logger.debug(`auth.service - login with user Id: ${userId}`)
 
-    const user = await userService.getByUsername(username)
-    if (!user) return Promise.reject('Invalid username or password')
+    const user = await userService.getById(userId)
+    if (!user) return Promise.reject('Invalid user Id')
 
-    delete user.password
+    // delete user.password
     return user
 }
 

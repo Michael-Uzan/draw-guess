@@ -62,6 +62,7 @@ function getEmptyUser(): IUser {
         img: '',
     }
 }
+
 function IsDrawing(game: IGame, roundIdx: number, loggedinUser: IUser): boolean {
     console.log('game', game)
     console.log('round', roundIdx)
