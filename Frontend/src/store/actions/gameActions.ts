@@ -1,6 +1,7 @@
 import IGame from "../../interface/IGame.interfacets";
 import IUser from "../../interface/IUser.interfacets";
 import { gameService } from "../../services/game.service";
+import { socketService } from "../../services/socket.service";
 
 export function loadGame(gameId: string) {
   return async (dispatch: Function) => {
@@ -47,6 +48,7 @@ export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
       gameCopy.rounds[roundIdx].img = imgUrl
       const game = await gameService.updateGame(gameCopy)
       dispatch({ type: 'SET_GAME', game })
+      socketService.emit('update-draw', game)
     } catch (err) {
       console.log('canot update draw ', err)
     }

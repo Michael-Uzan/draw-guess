@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Loading } from "../cmp/Loading";
 import { Login } from "../cmp/Login";
 import { UserList } from "../cmp/UserList";
 import IUser from "../interface/IUser.interfacets";
 import { userService } from "../services/user.service";
+import { RootState } from "../store";
+import { onLogout } from "../store/actions/userActions";
+import { UserState } from "../store/reducers/userReducer";
 
 export const StartNewGame = ({ history }: any) => {
+
+    const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (loggedinUser) dispatch(onLogout())
+    }, [])
 
     const historyPush = (route: string): void => {
         history.push(route)

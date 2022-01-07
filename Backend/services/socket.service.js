@@ -30,22 +30,23 @@ function connectSockets(http, session) {
         socket.on('unset-user-socket', () => {
             delete socket.userId
         })
-        socket.on('boardId', boardId => {
-            if (socket.myTopic === boardId) return;
+        socket.on('gameId', gameId => {
+            console.log('gameId', gameId)
+            if (socket.myTopic === gameId) return;
             if (socket.myTopic) {
                 socket.leave(socket.myTopic)
             }
-            socket.join(boardId)
-            socket.myTopic = boardId;
+            socket.join(gameId)
+            socket.myTopic = gameId;
         })
-        socket.on('update-board', board => {
-            console.log('Emitting update board', board.boardTitle);
-            socket.broadcast.to(socket.myTopic).emit('board updated', board) //CHECKING TEST
-            if (board.activities[0].isNotif === 'new-notif') {
-                console.log('sending notif from backend')
+        socket.on('update-draw', game => {
+            console.log('Emitting update game', game._id);
+            socket.broadcast.to(socket.myTopic).emit('draw-updated', game) //CHECKING TEST
+            // if (game.activities[0].isNotif === 'new-notif') {
+            //     console.log('sending notif from backend')
 
-                socket.broadcast.to(socket.myTopic).emit('sending notification', true)
-            }
+            //     socket.broadcast.to(socket.myTopic).emit('sending notification', true)
+            // }
 
         })
     })

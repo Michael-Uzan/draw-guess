@@ -23,7 +23,7 @@ async function getGames(req, res) {
 async function getGameById(req, res) {
   try {
     const { gameId } = req.params;
-    console.log('gameId', gameId)
+    // console.log('gameId', gameId)
     const game = await gameService.getById(gameId)
     res.json(game)
   } catch (err) {
@@ -47,7 +47,6 @@ async function addGame(req, res) {
 async function updateGame(req, res) {
   try {
     const game = req.body
-    console.log('game', game)
     const savedGame = await gameService.save(game)
     res.send(savedGame)
   } catch (err) {

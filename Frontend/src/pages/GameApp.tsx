@@ -17,8 +17,10 @@ import { onLogin } from '../store/actions/userActions';
 import { InviteLogin } from './InviteLogin';
 import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
+import { socketService } from '../services/socket.service';
+import IGame from '../interface/IGame.interfacets';
 
-export const GameApp = ({ match }: any) => {
+export const GameApp = ({ match, history }: any) => {
 
     const dispatch = useDispatch()
     const { game }: GameState = useSelector((state: RootState) => state.gameModule)
@@ -26,16 +28,22 @@ export const GameApp = ({ match }: any) => {
 
     useEffect(() => {
         // loadGame()
-
         // LOGIN //
         // userService.login('jrtez72dogg580g')
         // dispatch(onLogin('jrtez72dogg580g'))
         const { gameId } = match.params;
+        // NOT GAME ID HOME PAGE
         dispatch(loadGame(gameId))
+        socketService.setup();
+        socketService.emit('gameId', gameId)
+        socketService.on('draw-updated', (game: IGame) => {
+            dispatch(loadGame(game._id as string))
+        })
         // const users = userData
         // localStorageService.save('userDB', users)
         return () => {
-
+            socketService.off('gameId')
+            socketService.off('draw-updated')
         }
     }, [])
 

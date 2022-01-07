@@ -49,7 +49,7 @@ async function remove(boardId) {
 }
 
 async function save(game) {
-    console.log('game', game)
+    // console.log('game', game)
     if (game._id) {
         const { status, rounds, user1, user2 } = game
         let savedGame
