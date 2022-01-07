@@ -22,7 +22,7 @@ export const Guess = ({ historyPush }: any) => {
             if (checkVictory()) {
                 eventBusService.showSuccessMsg('Correct! You earn ' + game?.rounds[roundIdx].level + ' points!')
                 await dispatch(finishRound(game as IGame, roundIdx))
-                historyPush(`/game/${game?._id}/waiting-choose`)
+                historyPush(`waiting-choose`)
             }
             else {
                 setGuess({ guessingWord: '' })

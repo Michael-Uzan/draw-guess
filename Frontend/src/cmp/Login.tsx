@@ -33,7 +33,7 @@ export const Login = ({ historyPush }: any) => {
                 await dispatch(createNewGame(selectedUser as IUser, historyPush))
             } else {
                 await dispatch(addUserToGame(game, selectedUser as IUser))
-                historyPush(`/game/${game._id}/waiting-choose`)
+                historyPush(`waiting-choose`)
             }
             eventBusService.showSuccessMsg('Let\'s start!')
         } catch (err) {

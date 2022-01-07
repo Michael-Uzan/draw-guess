@@ -4,7 +4,8 @@ import { eventBusService } from "./event-bus.service"
 export const utilService = {
     makeId,
     getCapitalDisplay,
-    copyToClipboard
+    copyToClipboard,
+    showUpdateMassage
 }
 
 function makeId(length: number = 15): string {
@@ -23,4 +24,17 @@ function getCapitalDisplay(word: string): string {
 function copyToClipboard(link: string): void {
     navigator.clipboard.writeText(link);
     eventBusService.showSuccessMsg('Link copied!')
+}
+
+function showUpdateMassage(route: string): void {
+    switch (route) {
+        case 'waiting-choose':
+            eventBusService.showSuccessMsg('Next round!')
+            break;
+        case 'draw-guess':
+            eventBusService.showSuccessMsg('Lets Start!')
+            break;
+        default:
+            break;
+    }
 }

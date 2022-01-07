@@ -33,13 +33,17 @@ export const GameApp = ({ match, history }: any) => {
         socketService.on('draw-updated', () => {
             dispatch(loadGame(gameId))
         })
+        socketService.on('route-changed', (route: string) => {
+            dispatch(loadGame(gameId))
+            history.push(`./${route}`)
+            utilService.showUpdateMassage(route)
+        })
         return () => {
             socketService.off('gameId')
             socketService.off('draw-updated')
+            socketService.off('route-changed')
         }
     }, [])
-
-    // HISTORY PUSH HERE // 
 
     const historyPush = (route: string): void => {
         history.push(`./${route}`)

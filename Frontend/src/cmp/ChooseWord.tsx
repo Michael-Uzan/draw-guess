@@ -45,7 +45,7 @@ export const ChooseWord = ({ historyPush }: any) => {
         }
         await dispatch(startNextRound(game, roundIdx, level, word))
         // historyPush(`/game/${game._id}/draw-guess`)
-        historyPush(`./draw-guess`)
+        historyPush(`draw-guess`)
     }
 
     if (!levels || !words) return <Loading />

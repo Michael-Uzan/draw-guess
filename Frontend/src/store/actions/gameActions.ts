@@ -35,6 +35,7 @@ export function addUserToGame(game: IGame, user: IUser) {
       const updatedGame = await gameService.addUserToGame(game, user)
       console.log('updatedGame', updatedGame)
       dispatch({ type: 'SET_GAME', game: updatedGame })
+      socketService.emit('route-change', 'waiting-choose')
     } catch (err) {
       console.log('cannot add user to game', err)
     }
@@ -60,6 +61,7 @@ export function finishRound(game: IGame, roundIdx: number) {
     try {
       const finishedGame = await gameService.finishRound(game, roundIdx)
       dispatch({ type: 'SET_GAME', game: finishedGame })
+      socketService.emit('route-change', 'waiting-choose')
     } catch (err) {
       console.log('cannot finish game', err)
     }
@@ -71,6 +73,7 @@ export function startNextRound(game: IGame, roundIdx: number, level: string, gue
     try {
       const updatedGame = await gameService.startNextRound(game, roundIdx, level, guessingWord)
       dispatch({ type: 'SET_GAME', game: updatedGame })
+      socketService.emit('route-change', 'draw-guess')
     } catch (err) {
       console.log('cannot start next round ', err)
     }

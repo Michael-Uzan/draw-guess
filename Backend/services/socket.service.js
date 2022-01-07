@@ -40,8 +40,12 @@ function connectSockets(http, session) {
             socket.myTopic = gameId;
         })
         socket.on('update-draw', () => {
-            console.log('Emitting update game');
+            console.log('Emitting update draw');
             socket.broadcast.to(socket.myTopic).emit('draw-updated')
+        })
+        socket.on('route-change', (route) => {
+            console.log('Emitting route change');
+            socket.broadcast.to(socket.myTopic).emit('route-changed', route)
         })
     })
 }
