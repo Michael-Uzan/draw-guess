@@ -10,7 +10,6 @@ export function loadGame(gameId: string) {
       dispatch({ type: 'SET_GAME', game })
     } catch (err) {
       console.log('canot load game ', err);
-      // EVENT BIS SERVICE
     }
   }
 }
@@ -89,11 +88,3 @@ export function startNextRound(game: IGame, roundIdx: number, level: string, gue
     }
   }
 }
-
-
-
-// export function setCurrRateImgs(rateProperties: IRateProperties) {
-//   return (dispatch: Function) => {
-//     dispatch({ type: 'SET_IMGS', rateProperties })
-//   }
-// }

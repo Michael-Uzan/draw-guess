@@ -1,4 +1,3 @@
-import IPosition from "../interface/IPosition.interface"
 import { eventBusService } from "./event-bus.service"
 
 export const utilService = {

@@ -19,24 +19,6 @@ export function onLogin(userId: string) {
     }
 }
 
-
-
-// export function onSignup(credentials: ICredentials) {
-//     return async (dispatch: Function) => {
-//         try {
-//             const user = await userService.signup(credentials)
-//             dispatch({
-//                 type: 'SET_USER',
-//                 user
-//             })
-//             eventBusService.showSuccessMsg(`Welcome ${user.username}!`)
-//         } catch (err) {
-//             console.log('Cannot signup', err)
-//             eventBusService.showErrorMsg('Sorry cannot Signup!')
-//         }
-//     }
-// }
-
 export function onLogout() {
     return async (dispatch: Function) => {
         try {

@@ -20,16 +20,16 @@ function connectSockets(http, session) {
         socket.on('disconnect', socket => {
             console.log('Someone disconnected')
         })
-        socket.on('user-watch', userId => {
-            socket.join('watching:' + userId)
-        })
-        socket.on('set-user-socket', userId => {
-            logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`)
-            socket.userId = userId
-        })
-        socket.on('unset-user-socket', () => {
-            delete socket.userId
-        })
+        // socket.on('user-watch', userId => {
+        //     socket.join('watching:' + userId)
+        // })
+        // socket.on('set-user-socket', userId => {
+        //     logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`)
+        //     socket.userId = userId
+        // })
+        // socket.on('unset-user-socket', () => {
+        //     delete socket.userId
+        // })
         socket.on('gameId', gameId => {
             console.log('gameId', gameId)
             if (socket.myTopic === gameId) return;
@@ -84,37 +84,6 @@ async function broadcast({ type, data, room = null, userId }) {
     } else {
         excludedSocket.broadcast.emit(type, data)
     }
-}
-
-async function _getBoardSockets(boardId, userId) {
-    let sockets = await _getAllSockets();
-    console.log(userId);
-    console.log('board', boardId);
-    return sockets.filter(s => {
-        console.log(s.userId === userId);
-        return s.myTopic == boardId && s.userId !== userId
-    })
-
-}
-
-async function _getUserSocket(userId) {
-    const sockets = await _getAllSockets();
-    const socket = sockets.find(s => s.userId == userId)
-    return socket;
-}
-async function _getAllSockets() {
-    // return all Socket instances
-    const sockets = await gIo.fetchSockets();
-    return sockets;
-}
-
-async function _printSockets() {
-    const sockets = await _getAllSockets()
-    console.log(`Sockets: (count: ${sockets.length}):`)
-    sockets.forEach(_printSocket)
-}
-function _printSocket(socket) {
-    console.log(`Socket - socketId: ${socket.id} userId: ${socket.userId}`)
 }
 
 module.exports = {

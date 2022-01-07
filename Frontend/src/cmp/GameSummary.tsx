@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import IGame from '../interface/IGame.interfacets'
 import { RootState } from '../store'

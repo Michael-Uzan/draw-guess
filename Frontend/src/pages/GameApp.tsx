@@ -1,19 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { Route } from 'react-router-dom';
-import { Draw } from '../cmp/Draw';
 import { GameSummary } from '../cmp/GameSummary';
 import { Loading } from '../cmp/Loading';
-import { userData } from '../data/user.data';
-import IPosition from '../interface/IPosition.interface';
-import { gameService } from '../services/game.service';
-import { localStorageService } from '../services/storageService';
-import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import { DrawGuess } from './DrawGuess';
 import { useDispatch, useSelector } from 'react-redux';
 import { finishGame, loadGame } from '../store/actions/gameActions'
 import { WaitingChoose } from './WaitingChoose';
-import { onLogin, onLogout } from '../store/actions/userActions';
+import { onLogout } from '../store/actions/userActions';
 import { InviteLogin } from './InviteLogin';
 import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';

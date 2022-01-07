@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Loading } from "../cmp/Loading";
 import { Login } from "../cmp/Login";
-import { UserList } from "../cmp/UserList";
-import IUser from "../interface/IUser.interfacets";
-import { userService } from "../services/user.service";
 import { RootState } from "../store";
 import { onLogout } from "../store/actions/userActions";
 import { UserState } from "../store/reducers/userReducer";

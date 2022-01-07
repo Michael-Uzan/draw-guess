@@ -33,7 +33,6 @@ const wordRoutes = require('./api/word/word.routes')
 const gameRoutes = require('./api/game/game.routes')
 const authRoutes = require('./api/auth/auth.routes')
 const userRoutes = require('./api/user/user.routes')
-// const boardRoutes = require('./api/board/board.routes')
 const { connectSockets } = require('./services/socket.service')
 
 
@@ -41,7 +40,6 @@ app.use('/api/word', wordRoutes)
 app.use('/api/game', gameRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
-// app.use('/api/boards', boardRoutes)
 connectSockets(http, session)
 
 // const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
@@ -57,5 +55,3 @@ const port = process.env.PORT || 3030
 http.listen(port, () => {
     logger.info(`App is running on port: ${port}`)
 })
-
-// app.listen(3030, () => console.log('Server ready at port 3030!'));

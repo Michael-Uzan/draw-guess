@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const AppHeader = () => {
     return (
         <header className="full flex space-between align-center">

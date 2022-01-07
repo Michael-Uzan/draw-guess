@@ -26,7 +26,6 @@ async function query(status) {
 async function getById(gameId) {
     try {
         const collection = await dbService.getCollection(COLLECTION_GAME)
-        // const game = collection.findOne({ '_id': gameId })
         const game = collection.findOne({ '_id': ObjectId(gameId) })
         return game
     } catch (err) {
@@ -49,7 +48,6 @@ async function remove(boardId) {
 }
 
 async function save(game) {
-    // console.log('game', game)
     if (game._id) {
         const { status, rounds, user1, user2 } = game
         let savedGame
@@ -63,7 +61,6 @@ async function save(game) {
         try {
             const collection = await dbService.getCollection(COLLECTION_GAME)
             await collection.updateOne({ "_id": ObjectId(game._id) }, { $set: savedGame })
-            // await collection.updateOne({ "_id": ObjectId(game._id) }, { $set: { ...game } })
             return game
         } catch (err) {
             logger.error(`cannot update game`, err)

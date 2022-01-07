@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import IPosition from '../interface/IPosition.interface';
-import { utilService } from '../services/util.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDraw } from '../store/actions/gameActions';
 import { canvasService } from '../services/canvas.service';

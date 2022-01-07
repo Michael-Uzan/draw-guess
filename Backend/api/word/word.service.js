@@ -59,11 +59,6 @@ function _getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
-// function _popArray(nums) {
-//     return nums.pop()
-// }
-
-
 
 
 

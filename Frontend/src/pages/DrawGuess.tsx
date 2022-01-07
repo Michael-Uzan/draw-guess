@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
 import { Draw } from '../cmp/Draw'
 import { Guess } from '../cmp/Guess';
-import { Loading } from '../cmp/Loading';
 import IUser from '../interface/IUser.interfacets';
-import { gameService } from '../services/game.service';
 import { userService } from '../services/user.service'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
@@ -15,10 +12,6 @@ export const DrawGuess = ({ match, history, historyPush }: any) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)
-
-    // const historyPush = (route: string): void => {
-    //     history.push(route)
-    // }
 
     return (
         <section className="draw-guess">

@@ -10,18 +10,12 @@ module.exports = {
     getByUsername,
     remove,
     update,
-    add
 }
 
 async function query(filterBy = {}) {
     try {
         const collection = await dbService.getCollection(COLLECTION_USER)
         var users = await collection.find().toArray()
-        // users = users.map(user => {
-        //     delete user.password
-        //     user.createdAt = ObjectId(user._id).getTimestamp()
-        //     return user
-        // })
         return users
     } catch (err) {
         logger.error('cannot find users', err)
@@ -33,7 +27,6 @@ async function getById(userId) {
     try {
         const collection = await dbService.getCollection(COLLECTION_USER)
         const user = await collection.findOne({ '_id': ObjectId(userId) })
-        // delete user.password
         return user
     } catch (err) {
         logger.error(`while finding user ${userId}`, err)
@@ -64,7 +57,6 @@ async function remove(userId) {
 
 async function update(user) {
     try {
-        // peek only updatable fields!
         const userToSave = {
             _id: ObjectId(user._id),
             isPlaying: user.isPlaying,
@@ -82,23 +74,6 @@ async function update(user) {
 
 }
 
-async function add(user) {
-    try {
-        // peek only updatable fields!
-        const userToAdd = {
-            username: user.username,
-            password: user.password,
-            fullname: user.fullname,
-            initials: user.initials
-        }
-        const collection = await dbService.getCollection(COLLECTION_USER)
-        await collection.insertOne(userToAdd)
-        return userToAdd
-    } catch (err) {
-        logger.error('cannot insert user', err)
-        throw err
-    }
-}
 
 function _buildCriteria(filterBy) {
     const criteria = {}

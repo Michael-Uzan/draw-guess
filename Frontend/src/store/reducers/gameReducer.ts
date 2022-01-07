@@ -2,7 +2,7 @@ import IGame from "../../interface/IGame.interfacets"
 
 const INITIAL_STATE: GameState = {
   game: null,
-  roundIdx: 0 //game.rounds.length - 1
+  roundIdx: 0
 }
 
 export function gameReducer(state: GameState = INITIAL_STATE, action: GameAction) {

@@ -38,7 +38,7 @@ function _getEvPos(ev: MouseEvent | TouchEvent | any): IPosition {
     const touchEvents: string[] = ['touchstart', 'touchmove', 'touchend'];
     let pos: IPosition
     if (touchEvents.includes(ev.type)) {
-        // ev.preventDefault()
+        ev.preventDefault()
         const { pageX, pageY } = ev.changedTouches[0]
         const { offsetLeft, offsetTop, clientLeft, clientTop } = ev.changedTouches[0].target
         pos = {

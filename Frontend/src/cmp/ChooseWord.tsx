@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { IndexType } from 'typescript';
 import { eventBusService } from '../services/event-bus.service';
 import { utilService } from '../services/util.service';
 import { wordService } from '../services/word.service'
@@ -44,7 +43,6 @@ export const ChooseWord = ({ historyPush }: any) => {
             return
         }
         await dispatch(startNextRound(game, roundIdx, level, word))
-        // historyPush(`/game/${game._id}/draw-guess`)
         historyPush(`draw-guess`)
     }
 

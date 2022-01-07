@@ -1,14 +1,8 @@
-'use strict'
-import axios from 'axios'
-import { gameData } from '../data/game.data';
 import IGame from '../interface/IGame.interfacets';
 import IRound from '../interface/IRound.interface';
 import IUser from '../interface/IUser.interfacets';
-import { storageService } from './async-storage.service';
 import { httpService } from './http.service';
-import { localStorageService } from './storageService';
 import { userService } from './user.service';
-import { utilService } from './util.service';
 
 export const gameService = {
     getGame,
@@ -21,10 +15,11 @@ export const gameService = {
     startNextRound
 }
 
-const GAME_DB: string = 'gameDB'; // FOR DEVELOPING REASONS
+const GAME_DB: string = 'gameDB'; // FOR DEVELOPING FRONTEND REASONS WORKING ON ASYNC LOCAL STORAGE
 
 async function getGame(gameId: string): Promise<any> {
     return httpService.get(`game/${gameId}`)
+
     // const game = await storageService.get(gameId, GAME_DB)
     // return game
 }
@@ -36,6 +31,7 @@ async function getLastGames(status: string): Promise<IGame> {
 async function createNewGame(user: IUser) {
     const newGame: IGame = _getNewGame(user)
     return updateGame(newGame)
+
     // const res = await storageService.post(newGame, GAME_DB)
     // return res
 }
@@ -49,13 +45,13 @@ async function finishGame(game: IGame) {
 async function addUserToGame(game: IGame, user: IUser) {
     const updatedGame: IGame = _addUserToGame(game, user)
     return updateGame(updatedGame)
+
     // const res = await storageService.post(game, GAME_DB)
     // return res
 }
 
 async function updateGame(game: IGame): Promise<any> {
     return httpService.post(`game/`, { game })
-    // return httpService.post(`game/${game._id}`, { game })
 
     // const game = await storageService.put(newGame, GAME_DB)
     // return game
@@ -66,6 +62,7 @@ async function finishRound(game: IGame, roundIdx: number, isVictory: boolean) {
     const newRound = _getNewRound(game, roundIdx)
     game.rounds.push(newRound)
     return updateGame(game)
+
     // const newGame = await storageService.put(game, GAME_DB)
     // return newGame
 }
@@ -75,6 +72,7 @@ async function startNextRound(game: IGame, roundIdx: number, level: string, gues
     game.rounds[roundIdx].level = _getLevelPoints(level)
     game.status = 'draw-guess'
     return updateGame(game)
+
     // const newGame = await storageService.put(game, GAME_DB)
     // return newGame
 }

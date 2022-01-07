@@ -1,5 +1,4 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ChooseWord } from '../cmp/ChooseWord';
 import { Waiting } from '../cmp/Waiting';
 import IGame from '../interface/IGame.interfacets';
@@ -9,7 +8,7 @@ import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
 import { UserState } from '../store/reducers/userReducer';
 
-export const WaitingChoose = ({ history, historyPush }: any) => {
+export const WaitingChoose = ({ historyPush }: any) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)
