@@ -23,14 +23,14 @@ export const GameSummary = ({ game }: PropType) => {
         if (loggedinUser?._id === userId) {
             switch (game.status) {
                 case 'invite-login':
-                    if (isDrawing) return 'me invite'
-                    else return 'me login'
+                    if (isDrawing) return 'Me invite'
+                    else return 'Me login'
                 case 'waiting-choose':
-                    if (isDrawing) return 'me choose'
-                    else return 'me waiting'
+                    if (isDrawing) return 'Me choose'
+                    else return 'Me waiting'
                 case 'draw-guess':
-                    if (isDrawing) return 'me drawing'
-                    else return 'me guesing'
+                    if (isDrawing) return 'Me drawing'
+                    else return 'Me guesing'
                 default:
                     return ''
             }

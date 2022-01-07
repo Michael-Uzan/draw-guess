@@ -1,7 +1,5 @@
 .game-app {
     margin-bottom: 35px;
-    // display: grid;
-    // place-content: center;
     .canvas-container {
         margin-bottom: 35px;
         border: 2px solid black;
@@ -10,9 +8,9 @@
         width: 350px;
         height: 175px;
     }
-    // img {
-    //     border: 2px solid black;
-    //     width: 350px;
-    //     height: 175px;
-    // }
+    .btn-finish-game {
+        align-self: end;
+        font-size: rem(11px);
+        background-color: $clr10;
+    }
 }

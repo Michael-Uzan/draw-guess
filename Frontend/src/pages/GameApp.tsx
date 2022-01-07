@@ -11,13 +11,15 @@ import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import { DrawGuess } from './DrawGuess';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadGame } from '../store/actions/gameActions'
+import { finishGame, loadGame } from '../store/actions/gameActions'
 import { WaitingChoose } from './WaitingChoose';
-import { onLogin } from '../store/actions/userActions';
+import { onLogin, onLogout } from '../store/actions/userActions';
 import { InviteLogin } from './InviteLogin';
 import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
 import { socketService } from '../services/socket.service';
+import { eventBusService } from '../services/event-bus.service';
+import IGame from '../interface/IGame.interfacets';
 
 export const GameApp = ({ match, history }: any) => {
 
@@ -26,7 +28,6 @@ export const GameApp = ({ match, history }: any) => {
 
     useEffect(() => {
         const { gameId } = match.params;
-        // NOT GAME ID HOME PAGE
         dispatch(loadGame(gameId))
         socketService.setup();
         socketService.emit('gameId', gameId)
@@ -38,10 +39,14 @@ export const GameApp = ({ match, history }: any) => {
             history.push(`./${route}`)
             utilService.showUpdateMassage(route)
         })
+        socketService.on('game-finished', () => {
+            quitGame()
+        })
         return () => {
             socketService.off('gameId')
             socketService.off('draw-updated')
             socketService.off('route-changed')
+            socketService.off('game-finished')
         }
     }, [])
 
@@ -49,10 +54,27 @@ export const GameApp = ({ match, history }: any) => {
         history.push(`./${route}`)
     }
 
+    const onFinishGame = async () => {
+        try {
+            await dispatch(finishGame(game as IGame))
+            quitGame()
+        } catch (err) {
+            console.log('cannot finish game', err)
+            eventBusService.showErrorMsg('Cannot finish game!')
+        }
+    }
+
+    const quitGame = (): void => {
+        dispatch(onLogout())
+        eventBusService.showSuccessMsg('Game finished!')
+        history.push('')
+    }
+
     if (!game) return <Loading />
 
     return (
-        <section className="game-app">
+        <section className="game-app flex direction-col">
+            <button onClick={onFinishGame} className="btn-finish-game" >Finish Game</button>
             <GameSummary game={game} />
             <Route exact path="/game/:gameId/draw-guess" render={() => <DrawGuess historyPush={historyPush} />} />
             <Route exact path="/game/:gameId/waiting-choose" render={() => <WaitingChoose historyPush={historyPush} />} />

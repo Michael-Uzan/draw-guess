@@ -14,6 +14,7 @@ export const userService = {
     signup,
     getUsers,
     getLoggedinUser,
+    updateUsersPoints,
     getEmptyUser,
     IsDrawing
 }
@@ -55,6 +56,17 @@ function getLoggedinUser(): IUser | null {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
 
+async function updateUsersPoints(game: IGame) {
+    _updateUserPoints(game.user1 as IUser, game.user1?.points as number)
+    _updateUserPoints(game.user2 as IUser, game.user2?.points as number)
+}
+
+async function _updateUserPoints(userToUpdate: IUser, points: number) {
+    const user: IUser = await httpService.get(`user/${userToUpdate._id}`)
+    user.points += points
+    return httpService.put(`user/${user._id}`, { user })
+}
+
 function getEmptyUser(): IUser {
     return {
         username: '',
@@ -65,9 +77,6 @@ function getEmptyUser(): IUser {
 }
 
 function IsDrawing(game: IGame, roundIdx: number, loggedinUser: IUser): boolean {
-    console.log('game', game)
-    console.log('round', roundIdx)
-    console.log('loggediUser', loggedinUser)
     return (game.rounds[roundIdx].userDrawingId === loggedinUser?._id)
 }
 

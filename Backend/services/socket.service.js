@@ -47,6 +47,10 @@ function connectSockets(http, session) {
             console.log('Emitting route change');
             socket.broadcast.to(socket.myTopic).emit('route-changed', route)
         })
+        socket.on('game-finish', () => {
+            console.log('Emitting game finish');
+            socket.broadcast.to(socket.myTopic).emit('game-finished')
+        })
     })
 }
 

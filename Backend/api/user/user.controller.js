@@ -2,8 +2,8 @@ const userService = require('./user.service')
 const logger = require('../../services/logger.service')
 
 
-async function getUsers(req, res) {    
-    try {                
+async function getUsers(req, res) {
+    try {
         const users = await userService.query()
         res.send(users)
     } catch (err) {
@@ -12,7 +12,7 @@ async function getUsers(req, res) {
     }
 }
 
-async function getUser(req, res) {    
+async function getUser(req, res) {
     try {
         const user = await userService.getById(req.params.id)
         res.send(user)
@@ -34,7 +34,7 @@ async function deleteUser(req, res) {
 
 async function updateUser(req, res) {
     try {
-        const user = req.body
+        const { user } = req.body
         const savedUser = await userService.update(user)
         res.send(savedUser)
     } catch (err) {
@@ -43,9 +43,22 @@ async function updateUser(req, res) {
     }
 }
 
+async function addPoints(req, res) {
+    try {
+        const user = req.body.user
+        const points = req.body.points
+        console.log('user', user)
+        console.log('points', points)
+    } catch (err) {
+        logger.error('Failed to add points to user', err)
+        res.status(500).send({ err: 'Failed to add points to user user' })
+    }
+}
+
 module.exports = {
     getUser,
     getUsers,
     deleteUser,
-    updateUser
+    updateUser,
+    addPoints
 }

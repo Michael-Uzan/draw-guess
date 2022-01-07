@@ -11,7 +11,7 @@ export function gameReducer(state: GameState = INITIAL_STATE, action: GameAction
       return {
         ...state,
         game: action.game,
-        roundIdx: (action.game.rounds.length - 1) || 0
+        roundIdx: action.game ? (action.game.rounds.length - 1) : 0
       }
     default:
       return state

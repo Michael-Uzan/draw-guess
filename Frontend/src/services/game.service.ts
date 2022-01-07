@@ -7,57 +7,43 @@ import IUser from '../interface/IUser.interfacets';
 import { storageService } from './async-storage.service';
 import { httpService } from './http.service';
 import { localStorageService } from './storageService';
+import { userService } from './user.service';
 import { utilService } from './util.service';
 
 export const gameService = {
     getGame,
     createNewGame,
+    finishGame,
     addUserToGame,
     updateGame,
     finishRound,
     startNextRound
 }
 
-const GAME_DB: string = 'gameDB';
+const GAME_DB: string = 'gameDB'; // FOR DEVELOPING REASONS
 
 async function getGame(gameId: string): Promise<any> {
     return httpService.get(`game/${gameId}`)
-
-    // INITALIZE:
-    // const game = gameData
-    // localStorageService.save(GAME_DB, game)
-
     // const game = await storageService.get(gameId, GAME_DB)
     // return game
 }
 
 async function createNewGame(user: IUser) {
-    const newGame: IGame = {
-        // _id: utilService.makeId(),
-        status: 'invite-login',
-        user1: user,
-        user2: null,
-        rounds: [
-            {
-                img: '',
-                guessingWord: '',
-                level: 1,
-                time: 0,
-                userGuessingId: '',
-                userDrawingId: user._id as string
-            },
-        ]
-    }
+    const newGame: IGame = _getNewGame(user)
     return updateGame(newGame)
     // const res = await storageService.post(newGame, GAME_DB)
     // return res
 }
 
+async function finishGame(game: IGame) {
+    const finishedGame: IGame = _getFinishedGame(game)
+    await userService.updateUsersPoints(game)
+    return updateGame(finishedGame)
+}
+
 async function addUserToGame(game: IGame, user: IUser) {
-    game.user2 = user
-    game.status = 'waiting-choose'
-    game.rounds[0].userGuessingId = user._id as string
-    return updateGame(game)
+    const updatedGame: IGame = _addUserToGame(game, user)
+    return updateGame(updatedGame)
     // const res = await storageService.post(game, GAME_DB)
     // return res
 }
@@ -74,7 +60,6 @@ async function finishRound(game: IGame, roundIdx: number) {
     game = _updatePoints(game, roundIdx)
     const newRound = _getNewRound(game, roundIdx)
     game.rounds.push(newRound)
-    game.status = 'waiting-choose'
     return updateGame(game)
     // const newGame = await storageService.put(game, GAME_DB)
     // return newGame
@@ -89,9 +74,41 @@ async function startNextRound(game: IGame, roundIdx: number, level: string, gues
     // return newGame
 }
 
+function _getNewGame(user: IUser): IGame {
+    user.points = 0
+    return {
+        status: 'invite-login',
+        user1: user,
+        user2: null,
+        rounds: [
+            {
+                img: '',
+                guessingWord: '',
+                level: 1,
+                time: 0,
+                userGuessingId: '',
+                userDrawingId: user._id as string
+            },
+        ]
+    }
+}
+
+function _getFinishedGame(game: IGame) {
+    game.status = 'finish'
+    return game
+}
+
+function _addUserToGame(game: IGame, user: IUser) {
+    user.points = 0
+    game.user2 = user
+    game.status = 'waiting-choose'
+    game.rounds[0].userGuessingId = user._id as string
+    return game
+}
+
 function _getNewRound(game: IGame, roundIdx: number): IRound {
     return {
-        guessingWord: 'cat',
+        guessingWord: '',
         img: '../../assets/imgs/initCanvas.jpg',
         level: 1,
         time: 0,
@@ -101,6 +118,7 @@ function _getNewRound(game: IGame, roundIdx: number): IRound {
 }
 
 function _updatePoints(game: IGame, roundIdx: number) {
+    game.status = 'waiting-choose'
     const currGame: IRound = game.rounds[roundIdx]
     const points: number = currGame.level
     if (currGame.userGuessingId === game.user1?._id) game.user1.points += points

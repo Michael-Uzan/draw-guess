@@ -22,7 +22,8 @@ export const Login = ({ historyPush }: any) => {
     }, [])
 
     const getUsers = async () => {
-        const usersToShow = await userService.getUsers()
+        const usersToShow: IUser[] = await userService.getUsers()
+        console.log('users from backend', usersToShow)
         setUsers(usersToShow)
     }
 
