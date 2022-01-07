@@ -40,7 +40,7 @@ export const GameSummary = ({ game }: PropType) => {
 
     return (
         <section className="game-summary tac">
-            <h1>Round {getRound()}</h1>
+            <h1 className="title">Round {getRound()}</h1>
             <div className=" flex space-between align-center">
                 <div>
                     <Avatar user={game.user1} />

@@ -66,10 +66,10 @@ export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
   }
 }
 
-export function finishRound(game: IGame, roundIdx: number) {
+export function finishRound(game: IGame, roundIdx: number, isVictory: boolean) {
   return async (dispatch: Function) => {
     try {
-      const finishedGame = await gameService.finishRound(game, roundIdx)
+      const finishedGame = await gameService.finishRound(game, roundIdx, isVictory)
       dispatch({ type: 'SET_GAME', game: finishedGame })
       socketService.emit('route-change', 'waiting-choose')
     } catch (err) {

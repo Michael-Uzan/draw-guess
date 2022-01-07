@@ -13,8 +13,7 @@
 // Components
 @import "cmps/appHeader";
 @import "cmps/appFooter";
-@import "cmps/showTime"; // can delete
-@import "cmps/countDown"; // can delete
+@import "cmps/countDown";
 @import "cmps/userPreview";
 @import "cmps/userList";
 @import "cmps/loading";
@@ -29,6 +28,7 @@
 @import "cmps/chooseWord";
 @import "cmps/invite";
 @import "cmps/login";
+@import "cmps/gamePreview";
 
 // Views (pages)
 @import "pages/gameApp";

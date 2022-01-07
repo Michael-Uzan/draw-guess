@@ -7,6 +7,7 @@ import { eventBusService } from '../services/event-bus.service';
 import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
 import IGame from '../interface/IGame.interfacets';
+import { CountDown } from './CountDown';
 
 export const Guess = ({ historyPush }: any) => {
 
@@ -16,12 +17,20 @@ export const Guess = ({ historyPush }: any) => {
         guessingWord: ''
     })
 
+    const onTimeOver = async () => {
+        eventBusService.showErrorMsg('Time is up!')
+        const isVictory: boolean = false
+        await dispatch(finishRound(game as IGame, roundIdx, isVictory))
+        historyPush(`waiting-choose`)
+    }
+
     const onGuess = async (ev: FormEvent<HTMLFormElement> | null = null) => {
         try {
             if (ev) ev.preventDefault();
             if (checkVictory()) {
                 eventBusService.showSuccessMsg('Correct! You earn ' + game?.rounds[roundIdx].level + ' points!')
-                await dispatch(finishRound(game as IGame, roundIdx))
+                const isVictory: boolean = true
+                await dispatch(finishRound(game as IGame, roundIdx, isVictory))
                 historyPush(`waiting-choose`)
             } else {
                 setGuess({ guessingWord: '' })
@@ -38,6 +47,7 @@ export const Guess = ({ historyPush }: any) => {
 
     return (
         <section className="guess tac">
+            <CountDown targetTime={Date.now() + 1000 * 120} dueFunc={onTimeOver} />
             <WordToLines word={game?.rounds[roundIdx].guessingWord} />
             <img src={game?.rounds[roundIdx].img} />
             <form onSubmit={onGuess} >

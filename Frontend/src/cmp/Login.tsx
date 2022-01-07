@@ -22,8 +22,8 @@ export const Login = ({ historyPush }: any) => {
     }, [])
 
     const getUsers = async () => {
-        const usersToShow: IUser[] = await userService.getUsers()
-        console.log('users from backend', usersToShow)
+        let usersToShow: IUser[] = await userService.getUsers()
+        usersToShow = usersToShow.filter((user: IUser) => (user._id !== game?.user1?._id))
         setUsers(usersToShow)
     }
 

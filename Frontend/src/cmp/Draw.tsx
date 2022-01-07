@@ -6,6 +6,7 @@ import { updateDraw } from '../store/actions/gameActions';
 import { canvasService } from '../services/canvas.service';
 import { RootState } from '../store';
 import IGame from '../interface/IGame.interfacets';
+import { CountDown } from './CountDown';
 
 export const Draw = () => {
 
@@ -44,6 +45,7 @@ export const Draw = () => {
 
     return (
         <section className="draw tac">
+            <CountDown targetTime={Date.now() + 1000 * 120} dueFunc={() => { }} />
             <h1>{game?.rounds[roundIdx].guessingWord}</h1>
             <div className="canvas-container">
                 <canvas

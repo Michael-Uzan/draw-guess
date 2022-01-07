@@ -12,6 +12,7 @@ import { utilService } from './util.service';
 
 export const gameService = {
     getGame,
+    getLastGames,
     createNewGame,
     finishGame,
     addUserToGame,
@@ -26,6 +27,10 @@ async function getGame(gameId: string): Promise<any> {
     return httpService.get(`game/${gameId}`)
     // const game = await storageService.get(gameId, GAME_DB)
     // return game
+}
+
+async function getLastGames(status: string): Promise<IGame> {
+    return httpService.get('game', { status })
 }
 
 async function createNewGame(user: IUser) {
@@ -56,8 +61,8 @@ async function updateGame(game: IGame): Promise<any> {
     // return game
 }
 
-async function finishRound(game: IGame, roundIdx: number) {
-    game = _updatePoints(game, roundIdx)
+async function finishRound(game: IGame, roundIdx: number, isVictory: boolean) {
+    game = _updatePoints(game, roundIdx, isVictory)
     const newRound = _getNewRound(game, roundIdx)
     game.rounds.push(newRound)
     return updateGame(game)
@@ -117,8 +122,9 @@ function _getNewRound(game: IGame, roundIdx: number): IRound {
     }
 }
 
-function _updatePoints(game: IGame, roundIdx: number) {
+function _updatePoints(game: IGame, roundIdx: number, isVictory: boolean) {
     game.status = 'waiting-choose'
+    if (!isVictory) return game
     const currGame: IRound = game.rounds[roundIdx]
     const points: number = currGame.level
     if (currGame.userGuessingId === game.user1?._id) game.user1.points += points

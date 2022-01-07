@@ -1,3 +1,19 @@
 .home-page {
     margin-bottom: 35px;
+    h1 {
+        color: $clr3;
+    }
+    h2 {
+        text-decoration: underline;
+    }
+    ol {
+        border: 2px solid $clr7;
+        text-align: left;
+        li {
+            margin-bottom: 8px;
+        }
+    }
+    button {
+        margin-bottom: 35px;
+    }
 }

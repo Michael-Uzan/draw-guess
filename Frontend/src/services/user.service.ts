@@ -6,7 +6,7 @@ import { httpService } from './http.service'
 import { localStorageService } from './storageService'
 
 const STORAGE_KEY_LOGGEDIN_USER: string = 'loggedinUser'
-const USER_DB: string = 'userDB'
+const USER_DB: string = 'userDB' // FOR DEVELOPING REASONS
 
 export const userService = {
     login,
@@ -70,7 +70,6 @@ async function _updateUserPoints(userToUpdate: IUser, points: number) {
 function getEmptyUser(): IUser {
     return {
         username: '',
-        isPlaying: false,
         points: 0,
         img: '',
     }

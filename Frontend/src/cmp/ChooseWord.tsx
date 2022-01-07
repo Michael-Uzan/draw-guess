@@ -54,8 +54,11 @@ export const ChooseWord = ({ historyPush }: any) => {
         <section className="choose-word tac">
             <SelectList setChosenValue={setLevel} value={level} displays={levels} />
             <SelectList setChosenValue={setWord} value={word} displays={words} />
-            <h2>Your chosen word: {utilService.getCapitalDisplay(word)} </h2>
+            <h2>Your chosen word: <span>{utilService.getCapitalDisplay(word)}</span>  </h2>
             <button onClick={onStartNextRound}>Start Next Round</button>
+            <p>Easy 1 point <br />
+                Medium 3 points <br />
+                Hard 5 points</p>
         </section>
     )
 }

@@ -5,7 +5,8 @@ export const utilService = {
     makeId,
     getCapitalDisplay,
     copyToClipboard,
-    showUpdateMassage
+    showUpdateMassage,
+    sortByValue
 }
 
 function makeId(length: number = 15): string {
@@ -37,4 +38,8 @@ function showUpdateMassage(route: string): void {
         default:
             break;
     }
+}
+
+function sortByValue(array: any[], value: string) {
+    return array.sort((a, b) => (b[value] - a[value]))
 }

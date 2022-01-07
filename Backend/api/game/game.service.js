@@ -11,12 +11,12 @@ module.exports = {
     save
 }
 
-async function query(userId) {
+async function query(status) {
     try {
-        const criteria = _buildCriteria(userId)
+        const criteria = _buildCriteria(status)
         const collection = await dbService.getCollection(COLLECTION_GAME)
-        const boards = await collection.find(criteria).toArray()
-        return boards
+        const games = await collection.find(criteria).toArray()
+        return games
     } catch (err) {
         logger.error('cannot find boards', err)
         throw err
@@ -82,9 +82,9 @@ async function save(game) {
 
 }
 
-function _buildCriteria(userId) {
+function _buildCriteria(status) {
     let criteria = {}
-    criteria.$or = [{ 'boardMembers._id': userId.userId }, { 'createdBy': null }]
+    criteria.$or = [{ 'status': status }]
     return criteria;
 }
 

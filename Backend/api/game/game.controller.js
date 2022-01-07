@@ -11,12 +11,12 @@ module.exports = {
 
 async function getGames(req, res) {
   try {
-    var userId = req.query;
-    const boards = await gameService.query(userId)
-    res.json(boards);
+    var { status } = req.query;
+    const games = await gameService.query(status)
+    res.json(games);
   } catch (err) {
-    logger.error('Failed to get boards', err)
-    res.status(500).send({ err: 'Failed to get boards' })
+    logger.error('Failed to get games', err)
+    res.status(500).send({ err: 'Failed to get games' })
   }
 }
 
