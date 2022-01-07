@@ -6,6 +6,7 @@ export function loadGame(gameId: string) {
   return async (dispatch: Function) => {
     try {
       const game = await gameService.getGame(gameId)
+      console.log('game ', game)
       dispatch({ type: 'SET_GAME', game })
     } catch (err) {
       console.log('canot load game ', err);
@@ -31,6 +32,7 @@ export function addUserToGame(game: IGame, user: IUser) {
   return async (dispatch: Function) => {
     try {
       const updatedGame = await gameService.addUserToGame(game, user)
+      console.log('updatedGame', updatedGame)
       dispatch({ type: 'SET_GAME', game: updatedGame })
     } catch (err) {
       console.log('cannot add user to game', err)

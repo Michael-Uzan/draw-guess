@@ -24,11 +24,11 @@ async function login(userId: String): Promise<IUser> {
     // const users = userData
     // localStorageService.save(User_DB, users)
 
-    const user: IUser = await storageService.get(userId, USER_DB)
-    // const user: IUser = await httpService.post('auth/login', username)
-    // if (!user) {
-    //     throw new Error('login service error')
-    // }
+    // const user: IUser = await storageService.get(userId, USER_DB)
+    const user: IUser = await httpService.post('auth/login', { userId })
+    if (!user) {
+        throw new Error('login service error')
+    }
     return _saveLocalUser(user)
 }
 
@@ -46,8 +46,9 @@ async function logout(): Promise<void> {
 }
 
 async function getUsers() {
-    const users: IUser[] = await storageService.query(USER_DB)
-    return users
+    return httpService.get('user')
+    // const users: IUser[] = await storageService.query(USER_DB)
+    // return users
 }
 
 function getLoggedinUser(): IUser | null {

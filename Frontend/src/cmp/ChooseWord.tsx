@@ -20,14 +20,22 @@ export const ChooseWord = ({ historyPush }: any) => {
     const [levels, setLevels] = useState<string[] | null>(null);
 
     useEffect(() => {
-        const wordsToShow: string[] = wordService.getWords(level as any)
-        setWords(wordsToShow)
+        loadWordsByLevel()
     }, [level])
 
+    const loadWordsByLevel = async (): Promise<void> => {
+        const wordsToShow: string[] = await wordService.getWords(level as string)
+        setWords(wordsToShow)
+    }
+
     useEffect(() => {
-        const levelsToShow: string[] = wordService.getLevels()
-        setLevels(levelsToShow)
+        loadLevels()
     }, [])
+
+    const loadLevels = async (): Promise<void> => {
+        const levelsToShow: string[] = await wordService.getLevels()
+        setLevels(levelsToShow)
+    }
 
     const onStartNextRound = async () => {
         if (!game) return

@@ -27,13 +27,13 @@ async function getGame(gameId: string): Promise<any> {
     // const game = gameData
     // localStorageService.save(GAME_DB, game)
 
-    const game = await storageService.get(gameId, GAME_DB)
-    return game
+    // const game = await storageService.get(gameId, GAME_DB)
+    // return game
 }
 
 async function createNewGame(user: IUser) {
-    const newGame = {
-        _id: utilService.makeId(),
+    const newGame: IGame = {
+        // _id: utilService.makeId(),
         status: 'invite-login',
         user1: user,
         user2: null,
@@ -44,25 +44,30 @@ async function createNewGame(user: IUser) {
                 level: 1,
                 time: 0,
                 userGuessingId: '',
-                userDrawingId: user._id
+                userDrawingId: user._id as string
             },
         ]
     }
-    const res = await storageService.post(newGame, GAME_DB)
-    return res
+    return updateGame(newGame)
+    // const res = await storageService.post(newGame, GAME_DB)
+    // return res
 }
 
 async function addUserToGame(game: IGame, user: IUser) {
     game.user2 = user
     game.status = 'waiting-choose'
     game.rounds[0].userGuessingId = user._id as string
-    const res = await storageService.post(game, GAME_DB)
-    return res
+    return updateGame(game)
+    // const res = await storageService.post(game, GAME_DB)
+    // return res
 }
 
-async function updateGame(newGame: IGame): Promise<any> {
-    const game = await storageService.put(newGame, GAME_DB)
-    return game
+async function updateGame(game: IGame): Promise<any> {
+    return httpService.post(`game/`, { game })
+    // return httpService.post(`game/${game._id}`, { game })
+
+    // const game = await storageService.put(newGame, GAME_DB)
+    // return game
 }
 
 async function finishRound(game: IGame, roundIdx: number) {
@@ -70,15 +75,17 @@ async function finishRound(game: IGame, roundIdx: number) {
     const newRound = _getNewRound(game, roundIdx)
     game.rounds.push(newRound)
     game.status = 'waiting'
-    const newGame = await storageService.put(game, GAME_DB)
-    return newGame
+    return updateGame(game)
+    // const newGame = await storageService.put(game, GAME_DB)
+    // return newGame
 }
 
 async function startNextRound(game: IGame, roundIdx: number, level: string, guessingWord: string) {
     game.rounds[roundIdx].guessingWord = guessingWord
     game.rounds[roundIdx].level = _getLevelPoints(level)
-    const newGame = await storageService.put(game, GAME_DB)
-    return newGame
+    return updateGame(game)
+    // const newGame = await storageService.put(game, GAME_DB)
+    // return newGame
 }
 
 function _getNewRound(game: IGame, roundIdx: number): IRound {

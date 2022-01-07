@@ -17,11 +17,11 @@ async function query(filterBy = {}) {
     try {
         const collection = await dbService.getCollection(COLLECTION_USER)
         var users = await collection.find().toArray()
-        users = users.map(user => {
-            delete user.password
-            user.createdAt = ObjectId(user._id).getTimestamp()
-            return user
-        })
+        // users = users.map(user => {
+        //     delete user.password
+        //     user.createdAt = ObjectId(user._id).getTimestamp()
+        //     return user
+        // })
         return users
     } catch (err) {
         logger.error('cannot find users', err)
