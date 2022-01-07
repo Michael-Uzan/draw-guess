@@ -18,29 +18,21 @@ import { InviteLogin } from './InviteLogin';
 import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
 import { socketService } from '../services/socket.service';
-import IGame from '../interface/IGame.interfacets';
 
 export const GameApp = ({ match, history }: any) => {
 
     const dispatch = useDispatch()
     const { game }: GameState = useSelector((state: RootState) => state.gameModule)
-    // const [game, setGame] = useState(null);
 
     useEffect(() => {
-        // loadGame()
-        // LOGIN //
-        // userService.login('jrtez72dogg580g')
-        // dispatch(onLogin('jrtez72dogg580g'))
         const { gameId } = match.params;
         // NOT GAME ID HOME PAGE
         dispatch(loadGame(gameId))
         socketService.setup();
         socketService.emit('gameId', gameId)
-        socketService.on('draw-updated', (game: IGame) => {
-            dispatch(loadGame(game._id as string))
+        socketService.on('draw-updated', () => {
+            dispatch(loadGame(gameId))
         })
-        // const users = userData
-        // localStorageService.save('userDB', users)
         return () => {
             socketService.off('gameId')
             socketService.off('draw-updated')
@@ -49,14 +41,18 @@ export const GameApp = ({ match, history }: any) => {
 
     // HISTORY PUSH HERE // 
 
+    const historyPush = (route: string): void => {
+        history.push(`./${route}`)
+    }
+
     if (!game) return <Loading />
 
     return (
         <section className="game-app">
             <GameSummary game={game} />
-            <Route exact component={DrawGuess} path="/game/:gameId/draw-guess" />
-            <Route exact component={WaitingChoose} path="/game/:gameId/waiting-choose" />
-            <Route exact component={InviteLogin} path="/game/:gameId/invite-login" />
+            <Route exact path="/game/:gameId/draw-guess" render={() => <DrawGuess historyPush={historyPush} />} />
+            <Route exact path="/game/:gameId/waiting-choose" render={() => <WaitingChoose historyPush={historyPush} />} />
+            <Route exact path="/game/:gameId/invite-login" render={() => <InviteLogin historyPush={historyPush} />} />
         </section>
     )
 }

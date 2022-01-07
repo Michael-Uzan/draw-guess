@@ -11,14 +11,14 @@ import { GameState } from '../store/reducers/gameReducer';
 import { UserState } from '../store/reducers/userReducer';
 import IGame from '../interface/IGame.interfacets';
 
-export const DrawGuess = ({ match, history }: any) => {
+export const DrawGuess = ({ match, history, historyPush }: any) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)
 
-    const historyPush = (route: string): void => {
-        history.push(route)
-    }
+    // const historyPush = (route: string): void => {
+    //     history.push(route)
+    // }
 
     return (
         <section className="draw-guess">

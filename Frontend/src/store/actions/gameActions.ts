@@ -48,7 +48,7 @@ export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
       gameCopy.rounds[roundIdx].img = imgUrl
       const game = await gameService.updateGame(gameCopy)
       dispatch({ type: 'SET_GAME', game })
-      socketService.emit('update-draw', game)
+      socketService.emit('update-draw')
     } catch (err) {
       console.log('canot update draw ', err)
     }

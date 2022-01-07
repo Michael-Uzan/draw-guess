@@ -39,15 +39,9 @@ function connectSockets(http, session) {
             socket.join(gameId)
             socket.myTopic = gameId;
         })
-        socket.on('update-draw', game => {
-            console.log('Emitting update game', game._id);
-            socket.broadcast.to(socket.myTopic).emit('draw-updated', game) //CHECKING TEST
-            // if (game.activities[0].isNotif === 'new-notif') {
-            //     console.log('sending notif from backend')
-
-            //     socket.broadcast.to(socket.myTopic).emit('sending notification', true)
-            // }
-
+        socket.on('update-draw', () => {
+            console.log('Emitting update game');
+            socket.broadcast.to(socket.myTopic).emit('draw-updated')
         })
     })
 }

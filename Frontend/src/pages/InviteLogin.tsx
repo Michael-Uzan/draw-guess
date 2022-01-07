@@ -10,14 +10,14 @@ import { UserState } from '../store/reducers/userReducer';
 import IGame from '../interface/IGame.interfacets';
 import IUser from '../interface/IUser.interfacets';
 
-export const InviteLogin = ({ history }: any) => {
+export const InviteLogin = ({ history, historyPush }: any) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)
 
-    const historyPush = (route: string): void => {
-        history.push(route)
-    }
+    // const historyPush = (route: string): void => {
+    //     history.push(route)
+    // }
 
     // if (!loggedinUser) return <Loading />
 
