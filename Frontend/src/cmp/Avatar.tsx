@@ -26,7 +26,6 @@ export const Avatar = ({ user }: PropType) => {
                 <h4>{user.points}</h4>
                 <img className="img-coin" src="https://static.vecteezy.com/system/resources/previews/002/297/996/non_2x/gold-coin-money-one-coin-lucky-coin-cartoon-style-free-vector.jpg" />
             </div>
-            {/* Maybe add status */}
         </section>
     )
 }

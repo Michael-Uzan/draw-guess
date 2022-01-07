@@ -74,7 +74,7 @@ async function finishRound(game: IGame, roundIdx: number) {
     game = _updatePoints(game, roundIdx)
     const newRound = _getNewRound(game, roundIdx)
     game.rounds.push(newRound)
-    game.status = 'waiting'
+    game.status = 'waiting-choose'
     return updateGame(game)
     // const newGame = await storageService.put(game, GAME_DB)
     // return newGame
@@ -83,6 +83,7 @@ async function finishRound(game: IGame, roundIdx: number) {
 async function startNextRound(game: IGame, roundIdx: number, level: string, guessingWord: string) {
     game.rounds[roundIdx].guessingWord = guessingWord
     game.rounds[roundIdx].level = _getLevelPoints(level)
+    game.status = 'draw-guess'
     return updateGame(game)
     // const newGame = await storageService.put(game, GAME_DB)
     // return newGame
