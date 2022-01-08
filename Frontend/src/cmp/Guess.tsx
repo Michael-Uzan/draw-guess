@@ -9,7 +9,11 @@ import { GameState } from '../store/reducers/gameReducer';
 import IGame from '../interface/IGame.interfacets';
 import { CountDown } from './CountDown';
 
-export const Guess = ({ historyPush }: any) => {
+interface PropType {
+    historyPush: Function
+}
+
+export const Guess = ({ historyPush }: PropType) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const dispatch = useDispatch()

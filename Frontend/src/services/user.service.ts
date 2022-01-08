@@ -1,11 +1,10 @@
 import IGame from '../interface/IGame.interfacets'
 import IUser from '../interface/IUser.interfacets'
-import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER: string = 'loggedinUser'
 
-const USER_DB: string = 'userDB'  // FOR DEVELOPING FRONTEND REASONS WORKING ON ASYNC LOCAL STORAGE
+// const USER_DB: string = 'userDB'  // FOR DEVELOPING FRONTEND REASONS WORKING ON ASYNC LOCAL STORAGE
 
 export const userService = {
     login,

@@ -1,8 +1,14 @@
+import IGame from '../interface/IGame.interfacets'
+import IRound from '../interface/IRound.interface'
 import { GameSummary } from './GameSummary'
 
-export const GamePreview = ({ game }: any) => {
+interface PropType {
+    game: IGame
+}
 
-    const { round } = game.rounds[0]
+export const GamePreview = ({ game }: PropType) => {
+
+    const round: IRound = game.rounds[0]
 
     return (
         <section className="game-preview">

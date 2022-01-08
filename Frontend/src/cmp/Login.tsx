@@ -10,7 +10,11 @@ import { GameState } from '../store/reducers/gameReducer';
 import { Loading } from './Loading';
 import { UserList } from './UserList';
 
-export const Login = ({ historyPush }: any) => {
+interface PropType {
+    historyPush: Function
+}
+
+export const Login = ({ historyPush }: PropType) => {
 
     const dispatch = useDispatch()
     const { game }: GameState = useSelector((state: RootState) => state.gameModule)

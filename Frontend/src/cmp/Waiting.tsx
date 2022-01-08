@@ -1,7 +1,7 @@
-import React from 'react'
 import waiting from '../assets/imgs/waiting.gif';
 
-export const Waiting = ({ historyPush }: any) => {
+
+export const Waiting = () => {
 
     return (
         <section className="waiting tac">

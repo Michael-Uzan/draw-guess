@@ -15,7 +15,13 @@ import { socketService } from '../services/socket.service';
 import { eventBusService } from '../services/event-bus.service';
 import IGame from '../interface/IGame.interfacets';
 
-export const GameApp = ({ match, history }: any) => {
+interface PropType {
+    history: any
+    match: any
+}
+
+
+export const GameApp = ({ match, history }: PropType) => {
 
     const dispatch = useDispatch()
     const { game }: GameState = useSelector((state: RootState) => state.gameModule)

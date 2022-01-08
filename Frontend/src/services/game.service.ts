@@ -15,7 +15,7 @@ export const gameService = {
     startNextRound
 }
 
-const GAME_DB: string = 'gameDB'; // FOR DEVELOPING FRONTEND REASONS WORKING ON ASYNC LOCAL STORAGE
+// const GAME_DB: string = 'gameDB'; // FOR DEVELOPING FRONTEND REASONS WORKING ON ASYNC LOCAL STORAGE
 
 async function getGame(gameId: string): Promise<any> {
     return httpService.get(`game/${gameId}`)

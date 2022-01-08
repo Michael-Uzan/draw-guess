@@ -20,7 +20,6 @@ async function query(entityType: string, delay = 1100): Promise<any> {
 async function get(entityId: String, entityType: string): Promise<any> {
     const entities = await query(entityType)
     const entity = entities.find((entity: any) => entity._id === entityId)
-    // const entity = entities.find((entity: any) => entity.username === entityId)
     if (!entity) throw new Error(`Cannot get, Item ${entityId} of type: ${entityType} does not exist`)
     return entity;
 }

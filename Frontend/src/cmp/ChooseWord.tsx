@@ -9,7 +9,11 @@ import { GameState } from '../store/reducers/gameReducer';
 import { Loading } from './Loading';
 import { SelectList } from './SelectList';
 
-export const ChooseWord = ({ historyPush }: any) => {
+interface PropType {
+    historyPush: Function
+}
+
+export const ChooseWord = ({ historyPush }: PropType) => {
     const dispatch = useDispatch()
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
 

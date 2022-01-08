@@ -8,7 +8,12 @@ import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
 import { UserState } from '../store/reducers/userReducer';
 
-export const WaitingChoose = ({ historyPush }: any) => {
+interface PropType {
+    historyPush: Function
+}
+
+
+export const WaitingChoose = ({ historyPush }: PropType) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)

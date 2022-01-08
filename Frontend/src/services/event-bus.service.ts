@@ -5,6 +5,10 @@ export const eventBusService = {
     showErrorMsg
 };
 
+declare global {
+    interface Window { myBus: any, showUserMsg: any }
+}
+
 function on(eventName: string, listener: any) {
 
     const callListener = ({ detail }: any) => {
@@ -37,7 +41,4 @@ window.myBus = eventBusService;
 window.showUserMsg = showUserMsg;
 
 
-declare global {
-    interface Window { myBus: any, showUserMsg: any }
-}
 

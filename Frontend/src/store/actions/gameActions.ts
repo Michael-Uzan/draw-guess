@@ -1,5 +1,6 @@
 import IGame from "../../interface/IGame.interfacets";
 import IUser from "../../interface/IUser.interfacets";
+import { eventBusService } from "../../services/event-bus.service";
 import { gameService } from "../../services/game.service";
 import { socketService } from "../../services/socket.service";
 
@@ -10,6 +11,7 @@ export function loadGame(gameId: string) {
       dispatch({ type: 'SET_GAME', game })
     } catch (err) {
       console.log('canot load game ', err);
+      eventBusService.showErrorMsg('Cannot load game!')
     }
   }
 }
@@ -23,6 +25,7 @@ export function createNewGame(user: IUser, historyPush: Function) {
       return game
     } catch (err) {
       console.log('cannot start a new game', err)
+      eventBusService.showErrorMsg('Cannot create game!')
     }
   }
 }
@@ -35,6 +38,7 @@ export function finishGame(game: IGame) {
       socketService.emit('game-finish')
     } catch (err) {
       console.log('cannot finish game', err)
+      eventBusService.showErrorMsg('Cannot finish game!')
     }
   }
 }
@@ -47,6 +51,7 @@ export function addUserToGame(game: IGame, user: IUser) {
       socketService.emit('route-change', 'waiting-choose')
     } catch (err) {
       console.log('cannot add user to game', err)
+      eventBusService.showErrorMsg('Cannot add start game!')
     }
   }
 }
@@ -61,6 +66,7 @@ export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
       socketService.emit('update-draw')
     } catch (err) {
       console.log('canot update draw ', err)
+      eventBusService.showErrorMsg('Error update draw!')
     }
   }
 }
@@ -73,6 +79,7 @@ export function finishRound(game: IGame, roundIdx: number, isVictory: boolean) {
       socketService.emit('route-change', 'waiting-choose')
     } catch (err) {
       console.log('cannot finish game', err)
+      eventBusService.showErrorMsg('Error finish round!')
     }
   }
 }
@@ -85,6 +92,7 @@ export function startNextRound(game: IGame, roundIdx: number, level: string, gue
       socketService.emit('route-change', 'draw-guess')
     } catch (err) {
       console.log('cannot start next round ', err)
+      eventBusService.showErrorMsg('Error start a new round!')
     }
   }
 }

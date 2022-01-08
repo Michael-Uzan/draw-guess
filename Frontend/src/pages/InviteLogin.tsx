@@ -8,7 +8,12 @@ import { UserState } from '../store/reducers/userReducer';
 import IGame from '../interface/IGame.interfacets';
 import IUser from '../interface/IUser.interfacets';
 
-export const InviteLogin = ({ historyPush }: any) => {
+interface PropType {
+    historyPush: Function
+}
+
+
+export const InviteLogin = ({ historyPush }: PropType) => {
 
     const { game, roundIdx }: GameState = useSelector((state: RootState) => state.gameModule)
     const { loggedinUser }: UserState = useSelector((state: RootState) => state.userModule)

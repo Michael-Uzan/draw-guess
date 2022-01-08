@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { utilService } from '../services/util.service';
 import { RootState } from '../store';
 import { GameState } from '../store/reducers/gameReducer';
