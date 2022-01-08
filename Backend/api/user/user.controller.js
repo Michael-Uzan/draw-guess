@@ -43,22 +43,9 @@ async function updateUser(req, res) {
     }
 }
 
-async function addPoints(req, res) {
-    try {
-        const user = req.body.user
-        const points = req.body.points
-        console.log('user', user)
-        console.log('points', points)
-    } catch (err) {
-        logger.error('Failed to add points to user', err)
-        res.status(500).send({ err: 'Failed to add points to user user' })
-    }
-}
-
 module.exports = {
     getUser,
     getUsers,
     deleteUser,
     updateUser,
-    addPoints
 }

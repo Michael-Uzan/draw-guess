@@ -12,6 +12,7 @@ export function loadGame(gameId: string) {
     } catch (err) {
       console.log('canot load game ', err);
       eventBusService.showErrorMsg('Cannot load game!')
+      window.location.assign('/')
     }
   }
 }

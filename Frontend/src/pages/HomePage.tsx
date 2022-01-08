@@ -47,7 +47,7 @@ export const HomePage = () => {
             <button>
                 <Link to='/game' >Create a new Game</Link>
             </button>
-            <h2>How to play</h2>
+            <h2 className="how">How to play</h2>
             <ol>
                 <li>Create new game</li>
                 <li>Choose player</li>

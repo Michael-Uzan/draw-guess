@@ -11,6 +11,6 @@ router.post('/', addGame)
 router.put('/:gameId', updateGame)
 // router.post('/', requireAuth, addGame)
 // router.put('/:id', requireAuth, updateGame)
-// router.delete('/:id', removeBoard)
+// router.delete('/:id', removeGame)
 
 module.exports = router;

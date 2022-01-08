@@ -20,18 +20,7 @@ function connectSockets(http, session) {
         socket.on('disconnect', socket => {
             console.log('Someone disconnected')
         })
-        // socket.on('user-watch', userId => {
-        //     socket.join('watching:' + userId)
-        // })
-        // socket.on('set-user-socket', userId => {
-        //     logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`)
-        //     socket.userId = userId
-        // })
-        // socket.on('unset-user-socket', () => {
-        //     delete socket.userId
-        // })
         socket.on('gameId', gameId => {
-            console.log('gameId', gameId)
             if (socket.myTopic === gameId) return;
             if (socket.myTopic) {
                 socket.leave(socket.myTopic)
@@ -40,15 +29,12 @@ function connectSockets(http, session) {
             socket.myTopic = gameId;
         })
         socket.on('update-draw', () => {
-            console.log('Emitting update draw');
             socket.broadcast.to(socket.myTopic).emit('draw-updated')
         })
         socket.on('route-change', (route) => {
-            console.log('Emitting route change');
             socket.broadcast.to(socket.myTopic).emit('route-changed', route)
         })
         socket.on('game-finish', () => {
-            console.log('Emitting game finish');
             socket.broadcast.to(socket.myTopic).emit('game-finished')
         })
     })

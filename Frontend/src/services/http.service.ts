@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import { eventBusService } from './event-bus.service'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
@@ -38,6 +39,7 @@ async function ajax(endpoint: string, method: any = 'GET', data: any | null = nu
         console.dir(err)
         if (err.response && err.response.status === 401) {
             window.location.assign('/')
+            eventBusService.showErrorMsg('Error!!')
         }
         throw err
     }

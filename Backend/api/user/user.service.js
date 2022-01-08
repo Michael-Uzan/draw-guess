@@ -15,7 +15,7 @@ module.exports = {
 async function query(filterBy = {}) {
     try {
         const collection = await dbService.getCollection(COLLECTION_USER)
-        var users = await collection.find().toArray()
+        const users = await collection.find().toArray()
         return users
     } catch (err) {
         logger.error('cannot find users', err)
@@ -59,7 +59,6 @@ async function update(user) {
     try {
         const userToSave = {
             _id: ObjectId(user._id),
-            isPlaying: user.isPlaying,
             username: user.username,
             img: user.img,
             points: user.points
