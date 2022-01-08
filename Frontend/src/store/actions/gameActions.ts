@@ -66,11 +66,10 @@ export function addUserToGame(game: IGame, user: IUser) {
 export function updateDraw(newGame: IGame, imgUrl: string, roundIdx: number) {
   return async (dispatch: Function) => {
     try {
-      const gameCopy = JSON.parse(JSON.stringify(newGame))
-      gameCopy.rounds[roundIdx].img = imgUrl
-      const game = await gameService.updateGame(gameCopy)
-      dispatch({ type: 'SET_GAME', game })
+      newGame.rounds[roundIdx].img = imgUrl
+      const game = await gameService.updateGame(newGame)
       socketService.emit('update-draw')
+      dispatch({ type: 'SET_GAME', game })
     } catch (err) {
       console.log('canot update draw ', err)
       eventBusService.showErrorMsg('Error update draw!')
@@ -82,8 +81,8 @@ export function finishRound(game: IGame, roundIdx: number, isVictory: boolean) {
   return async (dispatch: Function) => {
     try {
       const finishedGame = await gameService.finishRound(game, roundIdx, isVictory)
-      dispatch({ type: 'SET_GAME', game: finishedGame })
       socketService.emit('route-change', 'waiting-choose')
+      dispatch({ type: 'SET_GAME', game: finishedGame })
     } catch (err) {
       console.log('cannot finish game', err)
       eventBusService.showErrorMsg('Error finish round!')

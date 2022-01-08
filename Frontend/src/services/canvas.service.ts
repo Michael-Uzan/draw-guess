@@ -4,7 +4,8 @@ export const canvasService = {
     initContext,
     startDrawing,
     finishDrawing,
-    draw
+    draw,
+    getImgUrl
 }
 
 function initContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
@@ -32,6 +33,10 @@ function draw(ev: MouseEvent | TouchEvent, context: CanvasRenderingContext2D, ca
 
 function finishDrawing(context: CanvasRenderingContext2D): void {
     context.closePath();
+}
+
+function getImgUrl(canvas: HTMLCanvasElement): string {
+    return canvas.toDataURL('image/jpeg', 1.0)
 }
 
 function _getEvPos(ev: MouseEvent | TouchEvent | any): IPosition {

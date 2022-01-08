@@ -34,7 +34,7 @@ export const Guess = ({ historyPush }: PropType) => {
             if (checkVictory()) {
                 eventBusService.showSuccessMsg('Correct! You earn ' + game?.rounds[roundIdx].level + ' points!')
                 const isVictory: boolean = true
-                await dispatch(finishRound(game as IGame, roundIdx, isVictory))
+                dispatch(finishRound(game as IGame, roundIdx, isVictory))
                 historyPush(`waiting-choose`)
             } else {
                 setGuess({ guessingWord: '' })
@@ -46,7 +46,8 @@ export const Guess = ({ historyPush }: PropType) => {
     }
 
     const checkVictory = (): boolean => {
-        return game?.rounds[roundIdx].guessingWord === guess.guessingWord
+        const regex: RegExp = new RegExp(guess.guessingWord, 'i')
+        return regex.test(game?.rounds[roundIdx].guessingWord as string)
     }
 
     return (

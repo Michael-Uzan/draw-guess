@@ -64,9 +64,9 @@ export const GameApp = ({ match, history }: PropType) => {
         }
     }
 
-    const quitGame = async (): Promise<void> => {
-        await dispatch(onLogout())
-        await dispatch(resetGame())
+    const quitGame = async () => {
+        dispatch(onLogout())
+        dispatch(resetGame())
         eventBusService.showSuccessMsg('Game finished!')
         history.push('')
     }

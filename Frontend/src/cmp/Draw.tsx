@@ -32,12 +32,20 @@ export const Draw = () => {
 
     const draw = (ev: MouseEvent | TouchEvent | any): void => {
         if (!isDrawing) return;
-        const imgUrl = canvasService.draw(ev, contextRef.current as CanvasRenderingContext2D, canvasRef.current as HTMLCanvasElement)
-        dispatch(updateDraw(game as IGame, imgUrl, roundIdx))
+        canvasService.draw(ev, contextRef.current as CanvasRenderingContext2D, canvasRef.current as HTMLCanvasElement)
+        /////////////////////////////////////////////////////////////////////////////////////
+        // when I try to send Socket vor every pixel of drawing, the socket crush :(
+        // so I end a soket to update draw just when player finish draw a line (finishDrawing)
+        // 
+        // const imgUrl = canvasService.draw(ev, contextRef.current as CanvasRenderingContext2D, canvasRef.current as HTMLCanvasElement)
+        // dispatch(updateDraw(game as IGame, imgUrl, roundIdx))
+        /////////////////////////////////////////////////////////////////////////////////////
     }
 
     const finishDrawing = (): void => {
         canvasService.finishDrawing(contextRef.current as CanvasRenderingContext2D)
+        const imgUrl = canvasService.getImgUrl(canvasRef?.current as HTMLCanvasElement)
+        dispatch(updateDraw(game as IGame, imgUrl, roundIdx)) // send Socket to update the draw
         setIsDrawing(false);
     }
 
