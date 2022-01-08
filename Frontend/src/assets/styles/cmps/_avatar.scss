@@ -1,5 +1,5 @@
 .avatar {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     .avatar-img {
         margin-bottom: 5px;
         border-radius: 50%;
@@ -15,6 +15,13 @@
             border: 0;
             width: 15px;
             height: 15px;
+            margin: 0;
         }
+    }
+}
+
+.home-page {
+    .avatar {
+        margin-bottom: 30px;
     }
 }

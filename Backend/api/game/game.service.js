@@ -15,7 +15,8 @@ async function query(status) {
     try {
         const criteria = _buildCriteria(status)
         const collection = await dbService.getCollection(COLLECTION_GAME)
-        const games = await collection.find(criteria).toArray()
+        let games = await collection.find(criteria).toArray()
+        games = games.slice(0, 3)
         return games
     } catch (err) {
         logger.error('cannot find boards', err)
