@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import { eventBusService } from './event-bus.service'
 
-const BASE_URL = process.env.NODE_ENV === 'production'
+const BASE_URL: string = process.env.NODE_ENV === 'production'
     ? '/api/'
     : '//localhost:3030/api/'
 

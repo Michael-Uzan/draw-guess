@@ -6,7 +6,9 @@ import { GameState } from '../store/reducers/gameReducer';
 export const Invite = () => {
 
     const { game }: GameState = useSelector((state: RootState) => state.gameModule)
-    const link: string = `http://localhost:3000/#/game/${game?._id}/invite-login`
+    const link: string = (process.env.NODE_ENV === 'production') ?
+        `https://monday-draw-guess-exam.herokuapp.com/#/game/${game?._id}/invite-login` :
+        `http://localhost:3000/#/game/${game?._id}/invite-login`
 
     return (
         <section className="invite tac">
