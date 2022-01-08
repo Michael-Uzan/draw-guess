@@ -53,5 +53,29 @@ export const userData: IUser[] = [
         "img": "https://cdn5.vectorstock.com/i/thumb-large/69/39/laughing-monster-vector-956939.jpg",
         "points": 10,
     },
+    {
+        "_id": "asdf324t634g",
+        "username": "Terra",
+        "img": "https://cdn1.vectorstock.com/i/thumb-large/46/10/terrible-monster-vector-934610.jpg",
+        "points": 12,
+    },
+    {
+        "_id": "asghe546y3hyu67",
+        "username": "Skazi",
+        "img": "https://cdn4.vectorstock.com/i/thumb-large/46/03/monster-smile-vector-2814603.jpg",
+        "points": 9,
+    },
+    {
+        "_id": "ghfdew854u3298th423",
+        "username": "Bandi",
+        "img": "https://cdn1.vectorstock.com/i/thumb-large/87/65/shoes-monster-vector-948765.jpg",
+        "points": 11,
+    },
+    {
+        "_id": "g430896ufgawh43t623",
+        "username": "Berg",
+        "img": "https://cdn2.vectorstock.com/i/thumb-large/80/51/cute-monster-mascot-and-ladybug-vector-32028051.jpg",
+        "points": 7,
+    },
 ]
 

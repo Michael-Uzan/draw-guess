@@ -1,5 +1,11 @@
 import { SelectPreview } from "./SelectPreview"
 
+interface PropType {
+    setChosenValue: Function,
+    value: string,
+    displays: string[]
+}
+
 export const SelectList = ({ setChosenValue, value, displays }: PropType) => {
 
     return (
@@ -9,8 +15,3 @@ export const SelectList = ({ setChosenValue, value, displays }: PropType) => {
     )
 }
 
-interface PropType {
-    setChosenValue: Function,
-    value: string,
-    displays: string[]
-}

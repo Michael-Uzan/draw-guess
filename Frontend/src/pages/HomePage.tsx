@@ -35,7 +35,6 @@ export const HomePage = () => {
 
     const getLastGame = async () => {
         let gamesToShow: IGame = await gameService.getLastGames('finish')
-        console.log(gamesToShow)
         setLastGames(gamesToShow)
     }
 

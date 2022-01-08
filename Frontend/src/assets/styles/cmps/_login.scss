@@ -3,4 +3,11 @@
     button {
         margin-bottom: 25px;
     }
+    h1 span {
+        color: $clr6;
+    }
+    .user-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }

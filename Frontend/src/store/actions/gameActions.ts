@@ -44,6 +44,12 @@ export function finishGame(game: IGame) {
   }
 }
 
+export function resetGame() { // IF OTHER PLAYER END THE GAME
+  return (dispatch: Function) => {
+    dispatch({ type: 'SET_GAME', game: null })
+  }
+}
+
 export function addUserToGame(game: IGame, user: IUser) {
   return async (dispatch: Function) => {
     try {

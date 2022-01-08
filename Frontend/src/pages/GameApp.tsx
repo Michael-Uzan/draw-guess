@@ -5,7 +5,7 @@ import { Loading } from '../cmp/Loading';
 import { utilService } from '../services/util.service';
 import { DrawGuess } from './DrawGuess';
 import { useDispatch, useSelector } from 'react-redux';
-import { finishGame, loadGame } from '../store/actions/gameActions'
+import { finishGame, loadGame, resetGame } from '../store/actions/gameActions'
 import { WaitingChoose } from './WaitingChoose';
 import { onLogout } from '../store/actions/userActions';
 import { InviteLogin } from './InviteLogin';
@@ -34,8 +34,8 @@ export const GameApp = ({ match, history }: PropType) => {
         socketService.on('draw-updated', () => {
             dispatch(loadGame(gameId))
         })
-        socketService.on('route-changed', (route: string) => {
-            dispatch(loadGame(gameId))
+        socketService.on('route-changed', async (route: string): Promise<void> => {
+            await dispatch(loadGame(gameId))
             history.push(`./${route}`)
             utilService.showUpdateMassage(route)
         })
@@ -64,8 +64,9 @@ export const GameApp = ({ match, history }: PropType) => {
         }
     }
 
-    const quitGame = (): void => {
-        dispatch(onLogout())
+    const quitGame = async (): Promise<void> => {
+        await dispatch(onLogout())
+        await dispatch(resetGame())
         eventBusService.showSuccessMsg('Game finished!')
         history.push('')
     }

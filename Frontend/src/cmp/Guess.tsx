@@ -51,7 +51,7 @@ export const Guess = ({ historyPush }: PropType) => {
 
     return (
         <section className="guess tac">
-            <CountDown targetTime={Date.now() + 1000 * 120} dueFunc={onTimeOver} />
+            <CountDown targetTime={Date.now() + 1000 * 70} dueFunc={onTimeOver} />
             <WordToLines word={game?.rounds[roundIdx].guessingWord} />
             <img src={game?.rounds[roundIdx].img} />
             <form onSubmit={onGuess} >

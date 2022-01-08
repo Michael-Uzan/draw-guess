@@ -52,7 +52,9 @@ export const Login = ({ historyPush }: PropType) => {
     return (
         <section className="login tac">
             {selectedUser ? <button onClick={onStart}>Start!</button> : <></>}
-            <h1>Choose player: {selectedUser?.username}</h1>
+            <p>Welcome! <br /> <br />
+                First login and then start "Draw and Guess" with your friend!</p>
+            <h1>Choose player: <span>{selectedUser?.username}</span> </h1>
             <UserList users={users} setSelectedUser={setSelectedUser} />
         </section>
     )

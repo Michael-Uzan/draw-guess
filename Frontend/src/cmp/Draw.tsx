@@ -43,7 +43,7 @@ export const Draw = () => {
 
     return (
         <section className="draw tac">
-            <CountDown targetTime={Date.now() + 1000 * 120} dueFunc={() => { }} />
+            <CountDown targetTime={Date.now() + 1000 * 70} dueFunc={() => { }} />
             <h1>{game?.rounds[roundIdx].guessingWord}</h1>
             <div className="canvas-container">
                 <canvas
